@@ -302,7 +302,7 @@ L Device:Q_PMOS_GSD Q?
 U 1 1 5E1E16B2
 P 6200 7300
 F 0 "Q?" V 6543 7300 50  0000 C CNN
-F 1 "Q_PMOS_GSD" V 6452 7300 50  0000 C CNN
+F 1 "IRLML6402" V 6452 7300 50  0000 C CNN
 F 2 "" H 6400 7400 50  0001 C CNN
 F 3 "~" H 6200 7300 50  0001 C CNN
 	1    6200 7300
@@ -627,12 +627,12 @@ $EndComp
 $Comp
 L Connector:USB_B_Micro J?
 U 1 1 5E11F2BF
-P 750 5650
-F 0 "J?" H 805 6117 50  0000 C CNN
-F 1 "USB_B_Micro" H 805 6026 50  0000 C CNN
-F 2 "" H 900 5600 50  0001 C CNN
-F 3 "~" H 900 5600 50  0001 C CNN
-	1    750  5650
+P 750 5850
+F 0 "J?" H 550 6200 50  0000 C CNN
+F 1 "USB_B_Micro" H 950 6200 50  0000 C CNN
+F 2 "" H 900 5800 50  0001 C CNN
+F 3 "~" H 900 5800 50  0001 C CNN
+	1    750  5850
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
@@ -681,31 +681,26 @@ Wire Wire Line
 $Comp
 L Device:C_Small C?
 U 1 1 5E16D30E
-P 1300 6100
-F 0 "C?" H 1100 6100 50  0000 L CNN
-F 1 "10u" H 1100 6000 50  0000 L CNN
-F 2 "" H 1300 6100 50  0001 C CNN
-F 3 "~" H 1300 6100 50  0001 C CNN
-	1    1300 6100
+P 1300 6250
+F 0 "C?" H 1100 6250 50  0000 L CNN
+F 1 "10u" H 1100 6150 50  0000 L CNN
+F 2 "" H 1300 6250 50  0001 C CNN
+F 3 "~" H 1300 6250 50  0001 C CNN
+	1    1300 6250
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	1300 6200 1300 6450
 Wire Wire Line
 	3350 5850 3350 5950
 Wire Wire Line
 	2500 5850 2850 5850
 Wire Wire Line
 	3350 6450 3350 6250
-Connection ~ 1300 6450
-Wire Wire Line
-	1300 6450 1600 6450
 $Comp
 L Device:Q_PMOS_GSD Q?
 U 1 1 5E17ED4A
 P 5450 5800
 F 0 "Q?" V 5700 5800 50  0000 C CNN
-F 1 "Q_PMOS_GSD" V 5650 5350 50  0000 C CNN
+F 1 "IRLML6402" V 5650 5500 50  0000 C CNN
 F 2 "" H 5650 5900 50  0001 C CNN
 F 3 "~" H 5450 5800 50  0001 C CNN
 	1    5450 5800
@@ -715,8 +710,6 @@ Wire Wire Line
 	2100 5450 2100 5650
 Wire Wire Line
 	2100 5450 2200 5450
-Wire Wire Line
-	1300 5450 1300 6000
 $Comp
 L Device:R_Small R?
 U 1 1 5E1CCC6A
@@ -812,7 +805,6 @@ Wire Wire Line
 NoConn ~ 4450 6500
 NoConn ~ 4450 7400
 NoConn ~ 4100 5750
-Connection ~ 1300 5450
 Connection ~ 2100 5450
 Wire Wire Line
 	3350 6450 3350 6500
@@ -1058,8 +1050,6 @@ $EndComp
 Wire Notes Line
 	500  2700 2850 2700
 Wire Notes Line
-	500  4300 500  1000
-Wire Notes Line
 	500  1000 2850 1000
 Text Notes 2300 2550 0    100  ~ 0
 +3.3V
@@ -1108,8 +1098,6 @@ F 3 "" H 5900 5700 50  0001 C CNN
 	1    5900 5700
 	1    0    0    -1  
 $EndComp
-Wire Notes Line
-	1400 5350 6250 5350
 Wire Wire Line
 	5200 5900 5200 5550
 Wire Wire Line
@@ -1324,26 +1312,15 @@ F 3 "" H 3650 1400 50  0001 C CNN
 	1    3650 1400
 	1    0    0    -1  
 $EndComp
-NoConn ~ 1050 5850
+NoConn ~ 1050 6050
 Wire Wire Line
-	650  6050 650  6450
-Wire Wire Line
-	650  6450 750  6450
-Wire Wire Line
-	750  6050 750  6450
-Connection ~ 750  6450
-Wire Wire Line
-	750  6450 1300 6450
-Wire Wire Line
-	1050 5450 1300 5450
-Wire Wire Line
-	1050 5650 1100 5650
-Text GLabel 1100 5650 2    50   Input ~ 0
+	1050 5850 1100 5850
+Text GLabel 1100 5850 2    50   Input ~ 0
 D+
-Text GLabel 1100 5750 2    50   Input ~ 0
+Text GLabel 1100 5950 2    50   Input ~ 0
 D-
 Wire Wire Line
-	1100 5750 1050 5750
+	1100 5950 1050 5950
 $Comp
 L Device:Q_NPN_BEC Q?
 U 1 1 5E31EA83
@@ -2575,8 +2552,6 @@ Wire Wire Line
 	5450 7600 5600 7600
 Wire Wire Line
 	5600 7600 5600 7550
-Connection ~ 5600 7600
-Connection ~ 5900 7600
 Wire Wire Line
 	6500 7200 6500 7300
 $Comp
@@ -2598,8 +2573,6 @@ Wire Notes Line
 	2900 5350 2900 7750
 Wire Notes Line
 	5150 5350 5150 7750
-Wire Wire Line
-	5600 7600 5900 7600
 Wire Wire Line
 	6500 7500 6500 7550
 Wire Wire Line
@@ -3249,4 +3222,136 @@ Wire Wire Line
 Connection ~ 8550 5400
 Wire Wire Line
 	8550 5600 8550 6000
+Wire Wire Line
+	650  6450 750  6450
+Wire Wire Line
+	1300 6350 1300 6450
+Connection ~ 1300 6450
+Wire Wire Line
+	1300 6450 1600 6450
+Wire Wire Line
+	650  6250 650  6450
+Wire Wire Line
+	750  6250 750  6450
+Connection ~ 750  6450
+Wire Wire Line
+	750  6450 1300 6450
+Wire Wire Line
+	1300 5450 1300 5650
+Wire Wire Line
+	1050 5650 1300 5650
+Connection ~ 1300 5650
+Wire Wire Line
+	1300 5650 1300 6150
+Wire Notes Line
+	500  1000 500  5350
+Wire Notes Line
+	500  5350 6250 5350
+$Comp
+L Connector:USB_A J?
+U 1 1 5E2ED068
+P 750 4650
+F 0 "J?" H 650 4150 50  0000 C CNN
+F 1 "USB_A" H 650 4050 50  0000 C CNN
+F 2 "" H 900 4600 50  0001 C CNN
+F 3 " ~" H 900 4600 50  0001 C CNN
+	1    750  4650
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5V #PWR?
+U 1 1 5E39788C
+P 1500 4550
+F 0 "#PWR?" H 1500 4400 50  0001 C CNN
+F 1 "+5V" H 1500 4700 50  0000 C CNN
+F 2 "" H 1500 4550 50  0001 C CNN
+F 3 "" H 1500 4550 50  0001 C CNN
+	1    1500 4550
+	1    0    0    -1  
+$EndComp
+NoConn ~ 1050 4650
+NoConn ~ 1050 4750
+Wire Wire Line
+	650  5050 650  5100
+Wire Wire Line
+	750  5100 750  5050
+$Comp
+L power:GNDD #PWR?
+U 1 1 5E47D949
+P 1500 5050
+F 0 "#PWR?" H 1500 4800 50  0001 C CNN
+F 1 "GNDD" H 1300 5000 50  0000 C CNN
+F 2 "" H 1500 5050 50  0001 C CNN
+F 3 "" H 1500 5050 50  0001 C CNN
+	1    1500 5050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	650  5100 750  5100
+Wire Wire Line
+	750  5100 850  5100
+Wire Wire Line
+	850  5100 850  5000
+Connection ~ 750  5100
+Text Notes 850  5300 0    100  ~ 0
+M5_Power
+Wire Wire Line
+	1100 4450 1050 4450
+$Comp
+L Device:C_Small C?
+U 1 1 5E5E4FAC
+P 1500 4800
+F 0 "C?" H 1300 4850 50  0000 L CNN
+F 1 "10u" H 1300 4750 50  0000 L CNN
+F 2 "" H 1500 4800 50  0001 C CNN
+F 3 "~" H 1500 4800 50  0001 C CNN
+	1    1500 4800
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1500 4900 1500 5000
+Wire Wire Line
+	1500 5000 1500 5050
+Connection ~ 1500 5000
+Wire Wire Line
+	1100 4450 1100 4650
+Wire Wire Line
+	850  5000 1500 5000
+Wire Wire Line
+	1100 4650 1200 4650
+Wire Wire Line
+	1400 4650 1500 4650
+Connection ~ 1500 4650
+Wire Wire Line
+	1500 4650 1500 4700
+Wire Wire Line
+	1500 4550 1500 4650
+$Comp
+L Device:D_Schottky_Small D?
+U 1 1 5E841DFC
+P 1300 4650
+F 0 "D?" H 1300 4855 50  0000 C CNN
+F 1 "SS2040FL" H 1300 4764 50  0000 C CNN
+F 2 "" V 1300 4650 50  0001 C CNN
+F 3 "~" V 1300 4650 50  0001 C CNN
+	1    1300 4650
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R_Small R?
+U 1 1 5E93AE39
+P 5750 7600
+F 0 "R?" H 5600 7650 50  0000 L CNN
+F 1 "47" H 5550 7550 50  0000 L CNN
+F 2 "" H 5750 7600 50  0001 C CNN
+F 3 "~" H 5750 7600 50  0001 C CNN
+	1    5750 7600
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	5650 7600 5600 7600
+Connection ~ 5600 7600
+Wire Wire Line
+	5850 7600 5900 7600
+Connection ~ 5900 7600
 $EndSCHEMATC
