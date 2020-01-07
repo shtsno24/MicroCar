@@ -1,11 +1,16 @@
-//Sharp MTOF171000C0 I2C
-//Due MTOF
-//3.3 VDD
-//GND GND
-//18  TX1
-//19  RX1
-//20  SDA
-//21  SCL
+/* 
+ * Sharp MTOF171000C0 I2C on ESP32-WROOM-32D
+ * This code is based on http://akizukidenshi.com/catalog/g/gM-14538/
+ * To upload this sketch to ESP32 Board, unplug IO12. 
+ * Otherwise, you will not be able to upload this sketch to ESP32.
+ * ESP   MTOF
+ * 3.3V  VDD
+ * GND   GND
+ * IO12  TX1
+ * NC    RX1
+ * IO21  SDA 
+ * IO22  SCL
+ */
 
 #include <Wire.h>
 
@@ -17,16 +22,16 @@ uint8_t data_cnt;
 
 void setup() 
 {
-  Serial.begin(9600);
+  Serial.begin(115200);
   Serial.println("MTOF171000C0_I2C");
-  Wire.begin();
-  pinMode(18, OUTPUT);
+  Wire.begin(21, 22); // SDA, SCL
+  pinMode(12, OUTPUT); // Module Select
   delay(1000);
 }
 
 void loop() 
 {
-  digitalWrite(18, LOW);
+  digitalWrite(12, LOW);
   delay(5);
   Serial.print("distance = ");
 
@@ -46,7 +51,7 @@ void loop()
 
   Serial.print(distance);
   Serial.println(" mm");
-  digitalWrite(18, HIGH);
+  digitalWrite(12, HIGH);
   delay(45);
 }
 
