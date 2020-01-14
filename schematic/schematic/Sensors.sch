@@ -91,7 +91,7 @@ AR Path="/5E291C18" Ref="R?"  Part="1"
 AR Path="/5E247314/5E291C18" Ref="R27"  Part="1" 
 F 0 "R27" V 1200 1150 50  0000 C CNN
 F 1 "10" V 1400 1150 50  0000 C CNN
-F 2 "" H 1300 1150 50  0001 C CNN
+F 2 "micelib:C_0402_1005Metric_HandSoldering" H 1300 1150 50  0001 C CNN
 F 3 "~" H 1300 1150 50  0001 C CNN
 	1    1300 1150
 	0    1    1    0   
@@ -111,7 +111,7 @@ AR Path="/5E291C23" Ref="R?"  Part="1"
 AR Path="/5E247314/5E291C23" Ref="R28"  Part="1" 
 F 0 "R28" V 1200 1450 50  0000 C CNN
 F 1 "10" V 1400 1450 50  0000 C CNN
-F 2 "" H 1300 1450 50  0001 C CNN
+F 2 "micelib:C_0402_1005Metric_HandSoldering" H 1300 1450 50  0001 C CNN
 F 3 "~" H 1300 1450 50  0001 C CNN
 	1    1300 1450
 	0    1    1    0   
@@ -130,7 +130,7 @@ AR Path="/5E291C2D" Ref="R?"  Part="1"
 AR Path="/5E247314/5E291C2D" Ref="R11"  Part="1" 
 F 0 "R11" H 1300 1250 50  0000 C CNN
 F 1 "2m" H 1250 1350 50  0000 C CNN
-F 2 "" H 1150 1300 50  0001 C CNN
+F 2 "micelib:C_0402_1005Metric_HandSoldering" H 1150 1300 50  0001 C CNN
 F 3 "~" H 1150 1300 50  0001 C CNN
 	1    1150 1300
 	-1   0    0    1   
@@ -243,7 +243,7 @@ U 1 1 5E54588E
 P 2850 4300
 F 0 "U10" H 2850 4300 50  0000 C CNN
 F 1 "MPU-9250" H 2850 4200 50  0000 C CNN
-F 2 "Sensor_Motion:InvenSense_QFN-24_3x3mm_P0.4mm" H 2850 3300 50  0001 C CNN
+F 2 "micelib:InvenSense_QFN-24_3x3mm_P0.4mm_HandSoldering" H 2850 3300 50  0001 C CNN
 F 3 "https://store.invensense.com/datasheets/invensense/MPU9250REV1.0.pdf" H 2850 4150 50  0001 C CNN
 	1    2850 4300
 	1    0    0    -1  
@@ -270,7 +270,7 @@ U 1 1 5E5E9FF7
 P 5650 4300
 F 0 "U11" H 5650 4300 50  0000 C CNN
 F 1 "MPU-9250" H 5650 4200 50  0000 C CNN
-F 2 "Sensor_Motion:InvenSense_QFN-24_3x3mm_P0.4mm" H 5650 3300 50  0001 C CNN
+F 2 "micelib:InvenSense_QFN-24_3x3mm_P0.4mm_HandSoldering" H 5650 3300 50  0001 C CNN
 F 3 "https://store.invensense.com/datasheets/invensense/MPU9250REV1.0.pdf" H 5650 4150 50  0001 C CNN
 	1    5650 4300
 	1    0    0    -1  
