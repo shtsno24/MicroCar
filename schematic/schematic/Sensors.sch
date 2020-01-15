@@ -577,47 +577,10 @@ Text GLabel 3500 1000 2    50   Input ~ 0
 I2C_SDA
 Text GLabel 3500 1100 2    50   Input ~ 0
 I2C_SCL
-$Comp
-L power:GND #PWR?
-U 1 1 5EC61195
-P 4650 1950
-AR Path="/5EC61195" Ref="#PWR?"  Part="1" 
-AR Path="/5E247314/5EC61195" Ref="#PWR075"  Part="1" 
-F 0 "#PWR075" H 4650 1700 50  0001 C CNN
-F 1 "GND" H 4650 1800 50  0000 C CNN
-F 2 "" H 4650 1950 50  0001 C CNN
-F 3 "" H 4650 1950 50  0001 C CNN
-	1    4650 1950
-	1    0    0    -1  
-$EndComp
 Text GLabel 4850 1600 2    50   Input ~ 0
 ADC1_Batt
 Wire Wire Line
-	4650 1950 4650 1900
-$Comp
-L Connector_Generic:Conn_01x04 J14
-U 1 1 5ECB2FF3
-P 4300 1800
-F 0 "J14" H 4220 1375 50  0000 C CNN
-F 1 "Conn_01x04" H 4220 1466 50  0000 C CNN
-F 2 "Connector_PinSocket_2.54mm:PinSocket_1x04_P2.54mm_Vertical" H 4300 1800 50  0001 C CNN
-F 3 "~" H 4300 1800 50  0001 C CNN
-	1    4300 1800
-	-1   0    0    1   
-$EndComp
-$Comp
-L Connector_Generic:Conn_01x04 J13
-U 1 1 5ECB3055
-P 4300 1150
-F 0 "J13" H 4220 725 50  0000 C CNN
-F 1 "Conn_01x04" H 4220 816 50  0000 C CNN
-F 2 "Connector_PinSocket_2.54mm:PinSocket_1x04_P2.54mm_Vertical" H 4300 1150 50  0001 C CNN
-F 3 "~" H 4300 1150 50  0001 C CNN
-	1    4300 1150
-	-1   0    0    1   
-$EndComp
-Wire Wire Line
-	4500 1900 4650 1900
+	4650 2050 4650 2000
 $Comp
 L power:+3V3 #PWR077
 U 1 1 5ECBE3B6
@@ -643,50 +606,14 @@ $EndComp
 Wire Wire Line
 	5350 1550 5350 1700
 Wire Wire Line
-	4650 1900 4650 1250
-Wire Wire Line
-	4650 1250 4500 1250
-Connection ~ 4650 1900
-Wire Wire Line
-	4500 1700 4750 1700
-Wire Wire Line
-	4500 1800 4700 1800
-Wire Wire Line
-	4500 1150 4700 1150
-Wire Wire Line
-	4700 1150 4700 1800
-Connection ~ 4700 1800
-Wire Wire Line
-	4500 1050 4750 1050
-Wire Wire Line
-	4750 1050 4750 1700
-Connection ~ 4750 1700
-Wire Wire Line
 	5550 1550 5550 1800
-Wire Wire Line
-	4750 1700 5350 1700
-Wire Wire Line
-	4700 1800 5550 1800
-Wire Wire Line
-	4500 950  4800 950 
-Wire Wire Line
-	4800 950  4800 1600
-Wire Wire Line
-	4800 1600 4500 1600
-Wire Wire Line
-	4850 1600 4800 1600
-Connection ~ 4800 1600
-Text GLabel 3500 1200 2    50   Input ~ 0
-PWM0
-Text GLabel 3500 1300 2    50   Input ~ 0
-PWM1
 $Comp
 L Connector_Generic:Conn_01x07 J11
 U 1 1 5ED4250E
 P 2800 1000
 F 0 "J11" H 2700 550 50  0000 C CNN
 F 1 "Conn_01x07" H 2700 600 50  0000 C CNN
-F 2 "Connector_PinSocket_2.54mm:PinSocket_1x07_P2.54mm_Vertical" H 2800 1000 50  0001 C CNN
+F 2 "Connector_PinHeader_1.00mm:PinHeader_2x04_P1.00mm_Vertical_SMD" H 2800 1000 50  0001 C CNN
 F 3 "~" H 2800 1000 50  0001 C CNN
 	1    2800 1000
 	-1   0    0    1   
@@ -697,7 +624,7 @@ U 1 1 5ED425C0
 P 2800 1900
 F 0 "J12" H 2700 1450 50  0000 C CNN
 F 1 "Conn_01x07" H 2700 1500 50  0000 C CNN
-F 2 "Connector_PinSocket_2.54mm:PinSocket_1x07_P2.54mm_Vertical" H 2800 1900 50  0001 C CNN
+F 2 "Connector_PinHeader_1.00mm:PinHeader_2x04_P1.00mm_Vertical_SMD" H 2800 1900 50  0001 C CNN
 F 3 "~" H 2800 1900 50  0001 C CNN
 	1    2800 1900
 	-1   0    0    1   
@@ -712,8 +639,6 @@ Wire Wire Line
 	3000 1000 3300 1000
 Wire Wire Line
 	3000 1100 3350 1100
-Wire Wire Line
-	3000 1200 3400 1200
 Wire Wire Line
 	3000 1600 3150 1600
 Wire Wire Line
@@ -740,15 +665,6 @@ Wire Wire Line
 	3350 2000 3350 1100
 Connection ~ 3350 1100
 Wire Wire Line
-	3400 1200 3400 2100
-Wire Wire Line
-	3400 2100 3000 2100
-Connection ~ 3400 1200
-Wire Wire Line
-	3000 1300 3450 1300
-Wire Wire Line
-	3400 1200 3500 1200
-Wire Wire Line
 	3350 1100 3500 1100
 Wire Wire Line
 	3300 1000 3500 1000
@@ -758,13 +674,6 @@ Wire Wire Line
 	3200 800  3500 800 
 Wire Wire Line
 	3150 700  3500 700 
-Wire Wire Line
-	3450 1300 3450 2200
-Wire Wire Line
-	3450 2200 3000 2200
-Connection ~ 3450 1300
-Wire Wire Line
-	3450 1300 3500 1300
 $Comp
 L Device:R_Small R29
 U 1 1 5E22EBA7
@@ -794,6 +703,92 @@ F 3 "" H 1400 6350 50  0001 C CNN
 	1    1400 6350
 	1    0    0    -1  
 $EndComp
+$Comp
+L Connector_Generic:Conn_01x05 J4
+U 1 1 5EF1C02F
+P 4200 1800
+F 0 "J4" H 4200 1400 50  0000 C CNN
+F 1 "Conn_01x05" H 4250 1500 50  0000 C CNN
+F 2 "Connector_PinHeader_1.00mm:PinHeader_2x03_P1.00mm_Vertical_SMD" H 4200 1800 50  0001 C CNN
+F 3 "~" H 4200 1800 50  0001 C CNN
+	1    4200 1800
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	4400 1600 4650 1600
+Wire Wire Line
+	4400 1700 4600 1700
+Wire Wire Line
+	4400 1800 4550 1800
+Wire Wire Line
+	4400 1900 4500 1900
+Wire Wire Line
+	4400 2000 4450 2000
+$Comp
+L Connector_Generic:Conn_01x05 J1
+U 1 1 5EF40D9B
+P 4200 950
+F 0 "J1" H 4120 525 50  0000 C CNN
+F 1 "Conn_01x05" H 4120 616 50  0000 C CNN
+F 2 "Connector_PinHeader_1.00mm:PinHeader_2x03_P1.00mm_Vertical_SMD" H 4200 950 50  0001 C CNN
+F 3 "~" H 4200 950 50  0001 C CNN
+	1    4200 950 
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	4400 1150 4450 1150
+Wire Wire Line
+	4450 1150 4450 2000
+Connection ~ 4450 2000
+Wire Wire Line
+	4450 2000 4650 2000
+Wire Wire Line
+	4500 1900 4500 1050
+Wire Wire Line
+	4500 1050 4400 1050
+Connection ~ 4500 1900
+Wire Wire Line
+	4500 1900 4850 1900
+Wire Wire Line
+	4400 950  4550 950 
+Wire Wire Line
+	4550 950  4550 1800
+Connection ~ 4550 1800
+Wire Wire Line
+	4550 1800 5550 1800
+Wire Wire Line
+	4600 1700 4600 850 
+Wire Wire Line
+	4600 850  4400 850 
+Connection ~ 4600 1700
+Wire Wire Line
+	4600 1700 5350 1700
+Wire Wire Line
+	4400 750  4650 750 
+Wire Wire Line
+	4650 750  4650 1600
+Connection ~ 4650 1600
+Wire Wire Line
+	4650 1600 4850 1600
+Text GLabel 4850 1900 2    50   Input ~ 0
+VBUS
+$Comp
+L power:GNDD #PWR?
+U 1 1 5EF5FD4C
+P 4650 2050
+AR Path="/5EF5FD4C" Ref="#PWR?"  Part="1" 
+AR Path="/5E247314/5EF5FD4C" Ref="#PWR0101"  Part="1" 
+F 0 "#PWR0101" H 4650 1800 50  0001 C CNN
+F 1 "GNDD" H 4500 2000 50  0000 C CNN
+F 2 "" H 4650 2050 50  0001 C CNN
+F 3 "" H 4650 2050 50  0001 C CNN
+	1    4650 2050
+	1    0    0    -1  
+$EndComp
+NoConn ~ 3000 2100
+NoConn ~ 3000 2200
+NoConn ~ 3000 1300
+NoConn ~ 3000 1200
 Wire Bus Line
 	1550 5550 1550 5950
 Wire Bus Line
