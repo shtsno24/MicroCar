@@ -35,7 +35,7 @@ AR Path="/5E291C00" Ref="U?"  Part="1"
 AR Path="/5E247314/5E291C00" Ref="U9"  Part="1" 
 F 0 "U9" H 2150 1550 60  0000 L CNN
 F 1 "INA219AIDCNR" V 2350 1200 60  0000 L CNN
-F 2 "digikey-footprints:SOT-23-8" H 2400 1750 60  0001 L CNN
+F 2 "Package_TO_SOT_SMD:SOT-23-8_Handsoldering" H 2400 1750 60  0001 L CNN
 F 3 "http://www.ti.com/lit/ds/symlink/ina219.pdf" H 2400 1850 60  0001 L CNN
 F 4 "296-23770-1-ND" H 2400 1950 60  0001 L CNN "Digi-Key_PN"
 F 5 "INA219AIDCNR" H 2400 2050 60  0001 L CNN "MPN"
@@ -230,7 +230,7 @@ CS0
 Text Label 1150 6050 0    50   ~ 0
 CS1
 Wire Wire Line
-	1100 6050 1450 6050
+	1100 6050 1400 6050
 Wire Wire Line
 	1100 5950 1450 5950
 Entry Wire Line
@@ -762,6 +762,38 @@ Wire Wire Line
 	3450 1300 3450 2200
 Wire Wire Line
 	3450 2200 3000 2200
+Connection ~ 3450 1300
+Wire Wire Line
+	3450 1300 3500 1300
+$Comp
+L Device:R_Small R29
+U 1 1 5E22EBA7
+P 1400 6200
+F 0 "R29" H 1459 6246 50  0000 L CNN
+F 1 "10k" H 1459 6155 50  0000 L CNN
+F 2 "micelib:C_0402_1005Metric_HandSoldering" H 1400 6200 50  0001 C CNN
+F 3 "~" H 1400 6200 50  0001 C CNN
+	1    1400 6200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1400 6100 1400 6050
+Connection ~ 1400 6050
+Wire Wire Line
+	1400 6050 1450 6050
+Wire Wire Line
+	1400 6300 1400 6350
+$Comp
+L power:GNDD #PWR078
+U 1 1 5E236C74
+P 1400 6350
+F 0 "#PWR078" H 1400 6100 50  0001 C CNN
+F 1 "GNDD" H 1600 6300 50  0000 C CNN
+F 2 "" H 1400 6350 50  0001 C CNN
+F 3 "" H 1400 6350 50  0001 C CNN
+	1    1400 6350
+	1    0    0    -1  
+$EndComp
 Wire Bus Line
 	1550 5550 1550 5950
 Wire Bus Line
@@ -770,7 +802,4 @@ Wire Bus Line
 	1550 3100 1550 4100
 Wire Bus Line
 	4000 3100 4000 4100
-Connection ~ 3450 1300
-Wire Wire Line
-	3450 1300 3500 1300
 $EndSCHEMATC

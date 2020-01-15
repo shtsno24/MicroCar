@@ -14,7 +14,7 @@
    CPOL     : 1
    CPHA     : 0
 */
-#define IMU_CS 5
+#define IMU_CS 12
 
 
 float ax, ay, az;
@@ -39,7 +39,7 @@ void setup() {
   SPI.setFrequency(1000000); // Set SPI Clock to 1MHz
   SPI.setDataMode(SPI_MODE3); // Set SPI Mode 3
   SPI.setBitOrder(MSBFIRST); // Set MSB First
-  SPI.begin(); //Using VSPI
+  SPI.begin(18, 23, 19, IMU_CS); //Using VSPI
 
   // Read WHO_AM_I(@0x75)
   uint8_t who_am_i = read_MPU9250(0x75, IMU_CS);
