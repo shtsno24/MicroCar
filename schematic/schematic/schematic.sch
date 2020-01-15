@@ -1587,7 +1587,7 @@ Wire Wire Line
 Wire Wire Line
 	10250 1950 10350 1950
 Text GLabel 10350 1950 2    50   Input ~ 0
-VSPI_CS0
+GPIO_5
 Wire Wire Line
 	10250 2650 10350 2650
 Text GLabel 10350 2650 2    50   Input ~ 0
@@ -1714,70 +1714,8 @@ Wire Notes Line
 	11100 600  11100 4300
 Text Notes 10550 4250 0    100  ~ 0
 ESP32
-$Comp
-L Connector_Generic:Conn_01x04 J6
-U 1 1 5E1F9AA1
-P 5150 4500
-F 0 "J6" H 5230 4492 50  0000 L CNN
-F 1 "Conn_I2C" H 4950 4200 50  0000 L CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical" H 5150 4500 50  0001 C CNN
-F 3 "~" H 5150 4500 50  0001 C CNN
-	1    5150 4500
-	0    -1   -1   0   
-$EndComp
-Text GLabel 5150 4800 3    50   Input ~ 0
-I2C_SDA
-Text GLabel 5050 4800 3    50   Input ~ 0
-I2C_SCL
-$Comp
-L power:+3V3 #PWR031
-U 1 1 5E2DA03D
-P 4850 4600
-F 0 "#PWR031" H 4850 4450 50  0001 C CNN
-F 1 "+3V3" H 4850 4750 50  0000 C CNN
-F 2 "" H 4850 4600 50  0001 C CNN
-F 3 "" H 4850 4600 50  0001 C CNN
-	1    4850 4600
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	5350 4700 5350 4750
-$Comp
-L Device:C_Small C15
-U 1 1 5E40C205
-P 5400 5250
-F 0 "C15" H 5492 5296 50  0000 L CNN
-F 1 "0.1u" H 5492 5205 50  0000 L CNN
-F 2 "micelib:C_0402_1005Metric_HandSoldering" H 5400 5250 50  0001 C CNN
-F 3 "~" H 5400 5250 50  0001 C CNN
-	1    5400 5250
-	0    -1   -1   0   
-$EndComp
-Wire Wire Line
-	5500 5250 5550 5250
-Wire Wire Line
-	5350 4750 5550 4750
-Connection ~ 5550 4750
-Wire Wire Line
-	5300 5250 5250 5250
-Connection ~ 5250 5250
-Wire Wire Line
-	5250 5250 5250 4700
-Wire Wire Line
-	5550 5250 5550 4750
 NoConn ~ 9050 1650
 NoConn ~ 9050 1750
-$Comp
-L power:GNDD #PWR035
-U 1 1 5E5CB469
-P 5700 5000
-F 0 "#PWR035" H 5700 4750 50  0001 C CNN
-F 1 "GNDD" H 5704 4845 50  0000 C CNN
-F 2 "" H 5700 5000 50  0001 C CNN
-F 3 "" H 5700 5000 50  0001 C CNN
-	1    5700 5000
-	1    0    0    -1  
-$EndComp
 $Comp
 L Device:C_Small C11
 U 1 1 5E5FD45F
@@ -2165,17 +2103,6 @@ Wire Wire Line
 	9500 4800 9550 4800
 Wire Wire Line
 	9550 5000 9500 5000
-$Comp
-L Driver_Motor:TB6612FNG U7
-U 1 1 5EE6E268
-P 7500 5300
-F 0 "U7" V 7500 5300 50  0000 L CNN
-F 1 "TB6612FNG" V 7600 5150 50  0000 L CNN
-F 2 "Package_SO:SSOP-24_5.3x8.2mm_P0.65mm" H 7950 5900 50  0001 C CNN
-F 3 "https://toshiba.semicon-storage.com/us/product/linear/motordriver/detail.TB6612FNG.html" H 7950 5900 50  0001 C CNN
-	1    7500 5300
-	0    1    1    0   
-$EndComp
 Wire Wire Line
 	10250 3350 10350 3350
 $Comp
@@ -2262,213 +2189,14 @@ Wire Notes Line
 	1600 4300 1600 5350
 Text Notes 3300 4500 0    100  ~ 0
 Servo
-Wire Wire Line
-	5150 4700 5150 4800
-Wire Wire Line
-	5050 4700 5050 4800
-Wire Wire Line
-	5700 4750 5700 5000
-Wire Wire Line
-	5550 4750 5700 4750
 Wire Notes Line
 	3800 5350 3800 4300
-Text GLabel 7250 4400 0    50   Input ~ 0
-PWM_MD
-$Comp
-L power:+3V3 #PWR055
-U 1 1 5FAE2A87
-P 8250 4450
-F 0 "#PWR055" H 8250 4300 50  0001 C CNN
-F 1 "+3V3" H 8400 4500 50  0000 C CNN
-F 2 "" H 8250 4450 50  0001 C CNN
-F 3 "" H 8250 4450 50  0001 C CNN
-	1    8250 4450
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	8500 5600 8550 5600
-Wire Wire Line
-	8550 5600 8550 5500
-Wire Wire Line
-	8500 5400 8550 5400
-Wire Wire Line
-	8500 5500 8550 5500
-Connection ~ 8550 5500
-Wire Wire Line
-	8550 5500 8550 5400
-Wire Wire Line
-	6500 5000 6350 5000
-Wire Wire Line
-	6350 5000 6350 5050
-$Comp
-L power:GNDD #PWR042
-U 1 1 5FB7703E
-P 6350 5050
-F 0 "#PWR042" H 6350 4800 50  0001 C CNN
-F 1 "GNDD" H 6354 4895 50  0000 C CNN
-F 2 "" H 6350 5050 50  0001 C CNN
-F 3 "" H 6350 5050 50  0001 C CNN
-	1    6350 5050
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	6500 5300 6350 5300
-Wire Wire Line
-	6350 5300 6350 5400
-$Comp
-L power:GND #PWR043
-U 1 1 5FB9D464
-P 6350 5700
-F 0 "#PWR043" H 6350 5450 50  0001 C CNN
-F 1 "GND" H 6355 5527 50  0000 C CNN
-F 2 "" H 6350 5700 50  0001 C CNN
-F 3 "" H 6350 5700 50  0001 C CNN
-	1    6350 5700
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	6500 5600 6350 5600
-Connection ~ 6350 5600
-Wire Wire Line
-	6350 5600 6350 5700
-Wire Wire Line
-	6500 5500 6350 5500
-Connection ~ 6350 5500
-Wire Wire Line
-	6350 5500 6350 5600
-Wire Wire Line
-	6350 5400 6500 5400
-Connection ~ 6350 5400
-Wire Wire Line
-	6350 5400 6350 5500
 Text GLabel 10350 3450 2    50   Input ~ 0
 MD_IN1
 Text GLabel 10350 1850 2    50   Input ~ 0
 MD_IN2
 Wire Wire Line
 	10350 1850 10250 1850
-Text GLabel 7250 4500 0    50   Input ~ 0
-MD_IN1
-Text GLabel 7250 4600 0    50   Input ~ 0
-MD_IN2
-Wire Wire Line
-	7900 4700 7900 4650
-$Comp
-L power:+3V3 #PWR051
-U 1 1 5FCAFC90
-P 7900 4650
-F 0 "#PWR051" H 7900 4500 50  0001 C CNN
-F 1 "+3V3" H 7900 4800 50  0000 C CNN
-F 2 "" H 7900 4650 50  0001 C CNN
-F 3 "" H 7900 4650 50  0001 C CNN
-	1    7900 4650
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	8200 6000 8200 6050
-$Comp
-L Device:C_Small C20
-U 1 1 5FCD89AF
-P 8550 6150
-F 0 "C20" H 8300 6200 50  0000 L CNN
-F 1 "0.1u" H 8300 6100 50  0000 L CNN
-F 2 "micelib:C_0402_1005Metric_HandSoldering" H 8550 6150 50  0001 C CNN
-F 3 "~" H 8550 6150 50  0001 C CNN
-	1    8550 6150
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	8200 6000 8550 6000
-Wire Wire Line
-	8550 6000 8550 6050
-Wire Wire Line
-	8550 6250 8550 6300
-Wire Wire Line
-	8550 6300 8200 6300
-Wire Wire Line
-	8200 6300 8200 6250
-$Comp
-L power:GND #PWR054
-U 1 1 5FD52639
-P 8200 6350
-F 0 "#PWR054" H 8200 6100 50  0001 C CNN
-F 1 "GND" H 8350 6300 50  0000 C CNN
-F 2 "" H 8200 6350 50  0001 C CNN
-F 3 "" H 8200 6350 50  0001 C CNN
-	1    8200 6350
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:CP_Small C17
-U 1 1 5FD530F1
-P 8200 6150
-F 0 "C17" H 8000 6200 50  0000 L CNN
-F 1 "47u" H 7950 6100 50  0000 L CNN
-F 2 "Capacitor_SMD:C_1210_3225Metric_Pad1.42x2.65mm_HandSolder" H 8200 6150 50  0001 C CNN
-F 3 "~" H 8200 6150 50  0001 C CNN
-	1    8200 6150
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:CP_Small C18
-U 1 1 5FD53A54
-P 8250 4650
-F 0 "C18" H 8338 4696 50  0000 L CNN
-F 1 "10u" H 8338 4605 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 8250 4650 50  0001 C CNN
-F 3 "~" H 8250 4650 50  0001 C CNN
-	1    8250 4650
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:C_Small C19
-U 1 1 5FDF96AB
-P 8550 4650
-F 0 "C19" H 8642 4696 50  0000 L CNN
-F 1 "0.1u" H 8642 4605 50  0000 L CNN
-F 2 "micelib:C_0402_1005Metric_HandSoldering" H 8550 4650 50  0001 C CNN
-F 3 "~" H 8550 4650 50  0001 C CNN
-	1    8550 4650
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:GNDD #PWR059
-U 1 1 5FE4D083
-P 8650 4900
-F 0 "#PWR059" H 8650 4650 50  0001 C CNN
-F 1 "GNDD" V 8750 4900 50  0000 C CNN
-F 2 "" H 8650 4900 50  0001 C CNN
-F 3 "" H 8650 4900 50  0001 C CNN
-	1    8650 4900
-	1    0    0    -1  
-$EndComp
-NoConn ~ 7100 4700
-NoConn ~ 7200 4700
-NoConn ~ 7600 4700
-NoConn ~ 7100 5900
-NoConn ~ 7200 5900
-NoConn ~ 7300 5900
-NoConn ~ 7400 5900
-Wire Wire Line
-	7600 5900 7600 5950
-Wire Wire Line
-	7700 5950 7700 5900
-Wire Wire Line
-	7800 5900 7800 5950
-Wire Wire Line
-	7900 5950 7900 5900
-Wire Wire Line
-	7250 4600 7300 4600
-Wire Wire Line
-	7300 4600 7300 4700
-Wire Wire Line
-	7250 4500 7400 4500
-Wire Wire Line
-	7400 4500 7400 4700
-Wire Wire Line
-	7250 4400 7700 4400
-Wire Wire Line
-	7700 4400 7700 4700
 Text Notes 10200 5400 0    100  ~ 0
 Light
 Wire Notes Line
@@ -2565,52 +2293,10 @@ Wire Wire Line
 Wire Wire Line
 	6150 6300 6150 5900
 Connection ~ 6150 5900
-Connection ~ 8550 5600
 Text Notes 6400 6400 0    100  ~ 0
 Motor
 Text GLabel 10350 3650 2    50   Input ~ 0
 ADC1_Batt
-Wire Wire Line
-	8200 6300 8200 6350
-Connection ~ 8200 6300
-Connection ~ 8550 6000
-Text GLabel 8550 5350 1    50   Input ~ 0
-MD_VM
-Wire Wire Line
-	8500 5000 8550 5000
-Wire Wire Line
-	8250 4450 8250 4500
-Wire Wire Line
-	8250 4500 8550 4500
-Wire Wire Line
-	8550 4500 8550 4550
-Connection ~ 8250 4500
-Wire Wire Line
-	8250 4500 8250 4550
-Wire Wire Line
-	8250 4500 8150 4500
-Wire Wire Line
-	8150 4500 8150 4850
-Wire Wire Line
-	8150 4850 8550 4850
-Wire Wire Line
-	8550 4850 8550 5000
-Wire Wire Line
-	8250 4800 8250 4750
-Wire Wire Line
-	8250 4800 8550 4800
-Wire Wire Line
-	8650 4800 8650 4900
-Wire Wire Line
-	8550 4750 8550 4800
-Connection ~ 8550 4800
-Wire Wire Line
-	8550 4800 8650 4800
-Wire Wire Line
-	8550 5350 8550 5400
-Connection ~ 8550 5400
-Wire Wire Line
-	8550 5600 8550 6000
 Wire Wire Line
 	650  6450 750  6450
 Wire Wire Line
@@ -2668,44 +2354,6 @@ Wire Wire Line
 Connection ~ 9650 4100
 Wire Wire Line
 	9650 4100 9650 4150
-$Comp
-L Motor:Motor_DC M1
-U 1 1 5E1FB0A0
-P 7150 6250
-F 0 "M1" V 6950 6200 50  0000 C CNN
-F 1 "Motor_DC" V 7350 6200 50  0000 C CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 7150 6160 50  0001 C CNN
-F 3 "~" H 7150 6160 50  0001 C CNN
-	1    7150 6250
-	0    -1   1    0   
-$EndComp
-Wire Wire Line
-	6900 6400 6900 6250
-Wire Wire Line
-	6900 6250 6950 6250
-Wire Wire Line
-	7800 5950 7900 5950
-Wire Wire Line
-	7600 5950 7700 5950
-Wire Wire Line
-	7600 6250 7450 6250
-Wire Wire Line
-	6900 6400 7900 6400
-Connection ~ 7900 5950
-$Comp
-L power:PWR_FLAG #FLG0102
-U 1 1 5E372D6D
-P 8200 5950
-F 0 "#FLG0102" H 8200 6025 50  0001 C CNN
-F 1 "PWR_FLAG" H 8200 6124 50  0000 C CNN
-F 2 "" H 8200 5950 50  0001 C CNN
-F 3 "~" H 8200 5950 50  0001 C CNN
-	1    8200 5950
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	8200 5950 8200 6000
-Connection ~ 8200 6000
 Wire Wire Line
 	2300 2950 2300 3000
 Connection ~ 2300 3000
@@ -2901,7 +2549,7 @@ Wire Notes Line
 Wire Notes Line
 	8950 4300 8950 6500
 Text GLabel 10350 2050 2    50   Input ~ 0
-VSPI_CS1
+GPIO_12
 Wire Notes Line
 	9950 5450 9950 6500
 Wire Notes Line
@@ -2945,12 +2593,6 @@ F 3 "" H 2700 5200 50  0001 C CNN
 	1    2700 5200
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	4850 4600 4850 5250
-Wire Wire Line
-	4850 5250 5250 5250
-Text Notes 5900 4550 0    100  ~ 0
-I2C
 $Comp
 L Switch:SW_SPDT SW3
 U 1 1 5E270698
@@ -3047,7 +2689,6 @@ F 3 "~" H 2650 4850 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 NoConn ~ 10250 3750
-NoConn ~ 10250 3550
 Wire Wire Line
 	9500 5900 9100 5900
 Wire Wire Line
@@ -3085,10 +2726,45 @@ $EndComp
 Wire Wire Line
 	1950 4850 2450 4850
 Wire Wire Line
-	7900 5950 7900 6400
-Connection ~ 7600 5950
-Wire Wire Line
-	7600 5950 7600 6250
-Wire Wire Line
 	2850 5850 3350 5850
+Text GLabel 10350 3550 2    50   Input ~ 0
+GPIO_33
+Wire Wire Line
+	10250 3550 10350 3550
+Text Notes 5800 4500 0    100  ~ 0
+GPIO
+$Comp
+L Connector_Generic:Conn_01x03 J?
+U 1 1 5E3178B9
+P 5100 4850
+F 0 "J?" H 5179 4892 50  0000 L CNN
+F 1 "Conn_GPIO" H 5179 4801 50  0000 L CNN
+F 2 "" H 5100 4850 50  0001 C CNN
+F 3 "~" H 5100 4850 50  0001 C CNN
+	1    5100 4850
+	1    0    0    -1  
+$EndComp
+Text GLabel 4850 4750 0    50   Input ~ 0
+GPIO_5
+Text GLabel 4850 4850 0    50   Input ~ 0
+GPIO_12
+Wire Wire Line
+	4850 4850 4900 4850
+Wire Wire Line
+	4900 4750 4850 4750
+Text GLabel 4850 4950 0    50   Input ~ 0
+GPIO_33
+Wire Wire Line
+	4850 4950 4900 4950
+$Comp
+L micelib:DRV8830 IC?
+U 1 1 5E5078AE
+P 7550 5200
+F 0 "IC?" V 7063 5200 60  0000 C CNN
+F 1 "DRV8830" V 7169 5200 60  0000 C CNN
+F 2 "" H 7550 5200 60  0001 C CNN
+F 3 "" H 7550 5200 60  0001 C CNN
+	1    7550 5200
+	0    1    1    0   
+$EndComp
 $EndSCHEMATC
