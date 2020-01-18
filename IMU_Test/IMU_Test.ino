@@ -3,10 +3,10 @@
 /*
    Test Code for MPU9250 with ESP32
 
-   IO5    : VSPI_CS
-   IO18   : VSPI_CLK
-   IO19   : VSPI_MISO
-   IO23   : VSPI_MOSI
+   IO5    : HSPI_CS
+   IO14   : HSPI_CLK
+   IO12   : HSPI_MISO
+   IO13   : HSPI_MOSI
    3.3V   : VCC
    GND    : GND
 
@@ -14,10 +14,11 @@
    CPOL     : 1
    CPHA     : 0
 */
-#define IMU_CS 12
+#define IMU_CS 19
 
 
 float ax, ay, az;
+SPIClass SPI2;
 
 IMU_DATA read_data(uint8_t, uint8_t);
 uint8_t read_MPU9250(uint8_t);
@@ -36,10 +37,10 @@ void setup() {
 
   pinMode(IMU_CS, OUTPUT); // CS
   digitalWrite(IMU_CS, HIGH); // Stop reading sensor
-  SPI.setFrequency(1000000); // Set SPI Clock to 1MHz
-  SPI.setDataMode(SPI_MODE3); // Set SPI Mode 3
-  SPI.setBitOrder(MSBFIRST); // Set MSB First
-  SPI.begin(18, 23, 19, IMU_CS); //Using VSPI
+  SPI2.setFrequency(1000000); // Set SPI Clock to 1MHz
+  SPI2.setDataMode(SPI_MODE3); // Set SPI Mode 3
+  SPI2.setBitOrder(MSBFIRST); // Set MSB First
+  SPI2.begin(14, 12, 13, IMU_CS); //Using HSPI(SCK, MISO, MOSI, CS)
 
   // Read WHO_AM_I(@0x75)
   uint8_t who_am_i = read_MPU9250(0x75, IMU_CS);
@@ -83,10 +84,10 @@ IMU_DATA read_data(uint8_t cs) {
   IMU_DATA o_data;
   digitalWrite(IMU_CS, LOW); // Start reading sensor
   for (uint8_t i = 0; i < 7; i++) {
-    Data_acc[i] = SPI.transfer(reg_acc[i] | 0x80); // Send register number
+    Data_acc[i] = SPI2.transfer(reg_acc[i] | 0x80); // Send register number
   }
   for (uint8_t i = 0; i < 7; i++) {
-    Data_gyro[i] = SPI.transfer(reg_gyro[i] | 0x80); // Send register number
+    Data_gyro[i] = SPI2.transfer(reg_gyro[i] | 0x80); // Send register number
   }
   digitalWrite(IMU_CS, HIGH); // Stop reading sensor
   o_data.ax_raw = Data_acc[1] << 8 | Data_acc[2];
@@ -104,15 +105,15 @@ IMU_DATA read_data(uint8_t cs) {
 uint8_t read_MPU9250(uint8_t reg, uint8_t cs) {
   uint8_t Data;
   digitalWrite(cs, LOW); // Start reading sensor
-  SPI.transfer(reg | 0x80); // Send register number
-  Data = SPI.transfer(0x00); // Read reg
+  SPI2.transfer(reg | 0x80); // Send register number
+  Data = SPI2.transfer(0x00); // Read reg
   digitalWrite(cs, HIGH); // Stop reading sensor
   return Data;
 }
 
 void write_MPU9250(uint8_t reg, uint8_t val, uint8_t cs) {
   digitalWrite(cs, LOW); // Start reading sensor
-  SPI.transfer(reg & 0x7F); // Send register number
-  SPI.transfer(val); // Write val
+  SPI2.transfer(reg & 0x7F); // Send register number
+  SPI2.transfer(val); // Write val
   digitalWrite(cs, HIGH); // Stop reading sensor
 }
