@@ -357,7 +357,7 @@ U 1 1 5E16D30E
 P 1350 7300
 F 0 "C3" H 1150 7300 50  0000 L CNN
 F 1 "100u" H 1150 7200 50  0000 L CNN
-F 2 "" H 1350 7300 50  0001 C CNN
+F 2 "Capacitor_SMD:C_1210_3225Metric_Pad1.42x2.65mm_HandSolder" H 1350 7300 50  0001 C CNN
 F 3 "~" H 1350 7300 50  0001 C CNN
 	1    1350 7300
 	1    0    0    -1  
@@ -1491,19 +1491,6 @@ Wire Wire Line
 Connection ~ 800  7500
 Wire Wire Line
 	800  7500 1350 7500
-$Comp
-L Device:R_Small R8
-U 1 1 5E93AE39
-P 5650 7650
-F 0 "R8" H 5450 7700 50  0000 L CNN
-F 1 "47" H 5450 7600 50  0000 L CNN
-F 2 "micelib:C_0402_1005Metric_HandSoldering" H 5650 7650 50  0001 C CNN
-F 3 "~" H 5650 7650 50  0001 C CNN
-	1    5650 7650
-	0    1    1    0   
-$EndComp
-Wire Wire Line
-	5750 7650 5800 7650
 Connection ~ 5800 7650
 Wire Wire Line
 	2300 3950 2300 4000
@@ -2387,7 +2374,7 @@ AR Path="/5EF2793C" Ref="R17"  Part="1"
 AR Path="/5E247314/5EF2793C" Ref="R?"  Part="1" 
 F 0 "R17" H 6900 5300 50  0000 C CNN
 F 1 "10m" H 6850 5400 50  0000 C CNN
-F 2 "micelib:C_0402_1005Metric_HandSoldering" H 6750 5350 50  0001 C CNN
+F 2 "Resistor_SMD:R_1206_3216Metric_Pad1.42x1.75mm_HandSolder" H 6750 5350 50  0001 C CNN
 F 3 "~" H 6750 5350 50  0001 C CNN
 	1    6750 5350
 	-1   0    0    1   
@@ -2642,8 +2629,6 @@ Connection ~ 1500 7500
 Wire Wire Line
 	1500 7500 1650 7500
 Wire Wire Line
-	3850 6750 3850 6900
-Wire Wire Line
 	5200 6750 5800 6750
 $Comp
 L power:GNDD #PWR02
@@ -2684,8 +2669,6 @@ Wire Wire Line
 Wire Wire Line
 	5300 7150 5300 7650
 Connection ~ 5300 7650
-Wire Wire Line
-	5300 7650 5550 7650
 Text GLabel 4950 6400 0    50   Input ~ 0
 VBUS
 Wire Wire Line
@@ -3136,7 +3119,7 @@ F 3 "" H 6000 3950 50  0001 C CNN
 	1    6000 3950
 	1    0    0    -1  
 $EndComp
-Text GLabel 3550 6750 0    50   Input ~ 0
+Text GLabel 3600 6850 0    50   Input ~ 0
 VBAT
 Wire Notes Line
 	500  6300 6250 6300
@@ -3162,28 +3145,6 @@ F 3 "" H 9650 850 50  0001 C CNN
 	1    9650 850 
 	1    0    0    -1  
 $EndComp
-$Comp
-L power:+3.3VA #PWR075
-U 1 1 6240C119
-P 10350 1100
-F 0 "#PWR075" H 10350 950 50  0001 C CNN
-F 1 "+3.3VA" H 10350 1250 50  0000 C CNN
-F 2 "" H 10350 1100 50  0001 C CNN
-F 3 "" H 10350 1100 50  0001 C CNN
-	1    10350 1100
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:+3.3VA #PWR063
-U 1 1 6240D171
-P 8550 3350
-F 0 "#PWR063" H 8550 3200 50  0001 C CNN
-F 1 "+3.3VA" H 8550 3500 50  0000 C CNN
-F 2 "" H 8550 3350 50  0001 C CNN
-F 3 "" H 8550 3350 50  0001 C CNN
-	1    8550 3350
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	700  7300 700  7500
 Wire Notes Line
@@ -3202,7 +3163,7 @@ U 1 1 62BECA0D
 P 750 5750
 F 0 "J1" H 670 5425 50  0000 C CNN
 F 1 "Conn_01x03" H 670 5516 50  0000 C CNN
-F 2 "" H 750 5750 50  0001 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical" H 750 5750 50  0001 C CNN
 F 3 "~" H 750 5750 50  0001 C CNN
 	1    750  5750
 	-1   0    0    1   
@@ -3215,118 +3176,103 @@ Wire Notes Line
 	3300 5250 3300 7750
 Wire Notes Line
 	4650 5250 4650 7750
-Wire Wire Line
-	4100 5700 3550 5700
-Wire Wire Line
-	3550 5700 3550 5600
-$Comp
-L power:+5V #PWR025
-U 1 1 62F41099
-P 3550 5600
-F 0 "#PWR025" H 3550 5450 50  0001 C CNN
-F 1 "+5V" H 3565 5773 50  0000 C CNN
-F 2 "" H 3550 5600 50  0001 C CNN
-F 3 "" H 3550 5600 50  0001 C CNN
-	1    3550 5600
-	1    0    0    -1  
-$EndComp
 Text GLabel 10350 3350 2    50   Input ~ 0
 IMU_CS
 Wire Wire Line
 	10350 3350 10250 3350
 Wire Wire Line
-	1000 2500 950  2500
-Text GLabel 950  2500 0    50   Input ~ 0
+	1000 1850 950  1850
+Text GLabel 950  1850 0    50   Input ~ 0
 IMU_CS
-Text GLabel 950  2400 0    50   Input ~ 0
+Text GLabel 950  1750 0    50   Input ~ 0
 SPI_CLK
-Text GLabel 950  2300 0    50   Input ~ 0
+Text GLabel 950  1650 0    50   Input ~ 0
 SPI_MISO
-Text GLabel 950  2200 0    50   Input ~ 0
+Text GLabel 950  1550 0    50   Input ~ 0
 SPI_MOSI
 Wire Wire Line
-	950  2400 1000 2400
+	950  1750 1000 1750
 $Comp
 L Sensor_Motion:MPU-9250 U2
 U 1 1 5F00E1D8
-P 1700 2500
-F 0 "U2" H 1700 2500 50  0000 C CNN
-F 1 "MPU-9250" H 1700 2400 50  0000 C CNN
-F 2 "Sensor_Motion:InvenSense_QFN-24_3x3mm_P0.4mm" H 1700 1500 50  0001 C CNN
-F 3 "https://store.invensense.com/datasheets/invensense/MPU9250REV1.0.pdf" H 1700 2350 50  0001 C CNN
-	1    1700 2500
+P 1700 1850
+F 0 "U2" H 1700 1850 50  0000 C CNN
+F 1 "MPU-9250" H 1700 1750 50  0000 C CNN
+F 2 "micelib:InvenSense_QFN-24_3x3mm_P0.4mm_HandSoldering" H 1700 850 50  0001 C CNN
+F 3 "https://store.invensense.com/datasheets/invensense/MPU9250REV1.0.pdf" H 1700 1700 50  0001 C CNN
+	1    1700 1850
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	950  2300 1000 2300
+	950  1650 1000 1650
 Wire Wire Line
-	950  2200 1000 2200
-NoConn ~ 1000 2700
-NoConn ~ 2400 2400
-NoConn ~ 2400 2500
-NoConn ~ 2400 2800
+	950  1550 1000 1550
+NoConn ~ 1000 2050
+NoConn ~ 2400 1750
+NoConn ~ 2400 1850
+NoConn ~ 2400 2150
 Wire Wire Line
-	1700 3400 1700 3450
+	1700 2750 1700 2800
 Wire Wire Line
-	1700 3450 2550 3450
+	1700 2800 2550 2800
 Wire Wire Line
-	2550 3450 2550 2900
+	2550 2800 2550 2250
 Wire Wire Line
-	2550 2900 2400 2900
-NoConn ~ 2400 2200
+	2550 2250 2400 2250
+NoConn ~ 2400 1550
 $Comp
 L Device:C_Small C8
 U 1 1 5F2E6DAD
-P 2550 2750
-F 0 "C8" H 2642 2796 50  0000 L CNN
-F 1 "0.1u" H 2642 2705 50  0000 L CNN
-F 2 "" H 2550 2750 50  0001 C CNN
-F 3 "~" H 2550 2750 50  0001 C CNN
-	1    2550 2750
+P 2550 2100
+F 0 "C8" H 2642 2146 50  0000 L CNN
+F 1 "0.1u" H 2642 2055 50  0000 L CNN
+F 2 "micelib:C_0402_1005Metric_HandSoldering" H 2550 2100 50  0001 C CNN
+F 3 "~" H 2550 2100 50  0001 C CNN
+	1    2550 2100
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	2550 2650 2550 2600
+	2550 2000 2550 1950
 Wire Wire Line
-	2550 2600 2450 2600
+	2550 1950 2450 1950
 Wire Wire Line
-	2450 2600 2450 2700
+	2450 1950 2450 2050
 Wire Wire Line
-	2450 2700 2400 2700
+	2450 2050 2400 2050
 Wire Wire Line
-	2550 2850 2550 2900
-Connection ~ 2550 2900
+	2550 2200 2550 2250
+Connection ~ 2550 2250
 $Comp
 L Device:C_Small C5
 U 1 1 5F37E999
-P 1450 1450
-F 0 "C5" H 1542 1496 50  0000 L CNN
-F 1 "10p" H 1542 1405 50  0000 L CNN
-F 2 "" H 1450 1450 50  0001 C CNN
-F 3 "~" H 1450 1450 50  0001 C CNN
-	1    1450 1450
+P 1450 850
+F 0 "C5" H 1542 896 50  0000 L CNN
+F 1 "10p" H 1542 805 50  0000 L CNN
+F 2 "micelib:C_0402_1005Metric_HandSoldering" H 1450 850 50  0001 C CNN
+F 3 "~" H 1450 850 50  0001 C CNN
+	1    1450 850 
 	0    1    1    0   
 $EndComp
 $Comp
 L Device:C_Small C6
 U 1 1 5F467975
-P 1950 1450
-F 0 "C6" H 2042 1496 50  0000 L CNN
-F 1 "0.1u" H 2042 1405 50  0000 L CNN
-F 2 "" H 1950 1450 50  0001 C CNN
-F 3 "~" H 1950 1450 50  0001 C CNN
-	1    1950 1450
+P 1950 850
+F 0 "C6" H 2042 896 50  0000 L CNN
+F 1 "0.1u" H 2042 805 50  0000 L CNN
+F 2 "micelib:C_0402_1005Metric_HandSoldering" H 1950 850 50  0001 C CNN
+F 3 "~" H 1950 850 50  0001 C CNN
+	1    1950 850 
 	0    1    1    0   
 $EndComp
 $Comp
 L power:+3V3 #PWR09
 U 1 1 5F555775
-P 1700 1200
-F 0 "#PWR09" H 1700 1050 50  0001 C CNN
-F 1 "+3V3" H 1700 1350 50  0000 C CNN
-F 2 "" H 1700 1200 50  0001 C CNN
-F 3 "" H 1700 1200 50  0001 C CNN
-	1    1700 1200
+P 1700 800
+F 0 "#PWR09" H 1700 650 50  0001 C CNN
+F 1 "+3V3" H 1850 900 50  0000 C CNN
+F 2 "" H 1700 800 50  0001 C CNN
+F 3 "" H 1700 800 50  0001 C CNN
+	1    1700 800 
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -3340,7 +3286,7 @@ F 3 "" H 2950 850 50  0001 C CNN
 	1    2950 850 
 	1    0    0    -1  
 $EndComp
-Text Notes 550  850  0    100  ~ 0
+Text Notes 600  800  0    100  ~ 0
 IMU
 $Comp
 L Device:D_Schottky_Small D1
@@ -3373,17 +3319,7 @@ Connection ~ 4100 7450
 Wire Wire Line
 	4100 7450 4100 7500
 Wire Wire Line
-	3850 6750 4800 6750
-Wire Wire Line
 	3700 7500 3700 7300
-Wire Wire Line
-	3550 6750 3700 6750
-Connection ~ 3850 6750
-Wire Wire Line
-	3700 6750 3700 7000
-Connection ~ 3700 6750
-Wire Wire Line
-	3700 6750 3850 6750
 $Comp
 L power:+3.3VA #PWR053
 U 1 1 5F2E94E3
@@ -3396,17 +3332,17 @@ F 3 "" H 7000 750 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	1700 3450 1700 3500
-Connection ~ 1700 3450
+	1700 2800 1700 2850
+Connection ~ 1700 2800
 $Comp
 L power:GNDD #PWR010
 U 1 1 5F33BF64
-P 1700 3500
-F 0 "#PWR010" H 1700 3250 50  0001 C CNN
-F 1 "GNDD" H 1700 3350 50  0000 C CNN
-F 2 "" H 1700 3500 50  0001 C CNN
-F 3 "" H 1700 3500 50  0001 C CNN
-	1    1700 3500
+P 1700 2850
+F 0 "#PWR010" H 1700 2600 50  0001 C CNN
+F 1 "GNDD" H 1500 2800 50  0000 C CNN
+F 2 "" H 1700 2850 50  0001 C CNN
+F 3 "" H 1700 2850 50  0001 C CNN
+	1    1700 2850
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
@@ -3427,8 +3363,6 @@ F 3 "~" H 3050 3950 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	3050 4100 3050 3950
-Wire Notes Line
-	2850 600  2850 5250
 $Comp
 L power:PWR_FLAG #FLG06
 U 1 1 5F3E2BBD
@@ -3471,50 +3405,33 @@ F 3 "~" H 2150 6500 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	1700 1200 1700 1450
-Connection ~ 1700 1450
+	1350 850  1150 850 
 Wire Wire Line
-	1700 1450 1800 1450
-Wire Wire Line
-	1800 1450 1800 1600
-Wire Wire Line
-	1600 1600 1600 1450
-Wire Wire Line
-	1600 1450 1700 1450
-Wire Wire Line
-	1850 1450 1800 1450
-Connection ~ 1800 1450
-Wire Wire Line
-	1600 1450 1550 1450
-Connection ~ 1600 1450
-Wire Wire Line
-	1350 1450 1150 1450
-Wire Wire Line
-	1150 1450 1150 1500
+	1150 850  1150 900 
 $Comp
 L power:GNDD #PWR05
 U 1 1 5F868E70
-P 1150 1500
-F 0 "#PWR05" H 1150 1250 50  0001 C CNN
-F 1 "GNDD" H 1154 1345 50  0000 C CNN
-F 2 "" H 1150 1500 50  0001 C CNN
-F 3 "" H 1150 1500 50  0001 C CNN
-	1    1150 1500
+P 1150 900
+F 0 "#PWR05" H 1150 650 50  0001 C CNN
+F 1 "GNDD" H 1154 745 50  0000 C CNN
+F 2 "" H 1150 900 50  0001 C CNN
+F 3 "" H 1150 900 50  0001 C CNN
+	1    1150 900 
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	2050 1450 2250 1450
+	2050 850  2250 850 
 Wire Wire Line
-	2250 1450 2250 1500
+	2250 850  2250 900 
 $Comp
 L power:GNDD #PWR013
 U 1 1 5F8BC7AA
-P 2250 1500
-F 0 "#PWR013" H 2250 1250 50  0001 C CNN
-F 1 "GNDD" H 2254 1345 50  0000 C CNN
-F 2 "" H 2250 1500 50  0001 C CNN
-F 3 "" H 2250 1500 50  0001 C CNN
-	1    2250 1500
+P 2250 900
+F 0 "#PWR013" H 2250 650 50  0001 C CNN
+F 1 "GNDD" H 2254 745 50  0000 C CNN
+F 2 "" H 2250 900 50  0001 C CNN
+F 3 "" H 2250 900 50  0001 C CNN
+	1    2250 900 
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
@@ -3567,17 +3484,6 @@ Wire Wire Line
 Connection ~ 2950 1050
 Wire Wire Line
 	3450 1050 3150 1050
-$Comp
-L Device:C_Small C11
-U 1 1 5FC07769
-P 3150 2750
-F 0 "C11" H 3242 2796 50  0000 L CNN
-F 1 "0.1u" H 3242 2705 50  0000 L CNN
-F 2 "micelib:C_0402_1005Metric_HandSoldering" H 3150 2750 50  0001 C CNN
-F 3 "~" H 3150 2750 50  0001 C CNN
-	1    3150 2750
-	-1   0    0    -1  
-$EndComp
 Wire Wire Line
 	3250 2950 3250 3000
 Wire Wire Line
@@ -3617,4 +3523,297 @@ Wire Wire Line
 Connection ~ 3800 3500
 Wire Wire Line
 	3800 3500 3800 3550
+NoConn ~ 4100 5700
+Wire Wire Line
+	1550 850  1600 850 
+Wire Wire Line
+	1600 850  1600 950 
+Connection ~ 1600 850 
+Wire Wire Line
+	1600 850  1700 850 
+Wire Wire Line
+	1800 950  1800 850 
+Connection ~ 1800 850 
+Wire Wire Line
+	1800 850  1850 850 
+Wire Wire Line
+	1700 800  1700 850 
+Connection ~ 1700 850 
+Wire Wire Line
+	1700 850  1800 850 
+$Comp
+L Connector_Generic:Conn_01x05 J8
+U 1 1 5F422D46
+P 800 3550
+F 0 "J8" V 350 3300 50  0000 L CNN
+F 1 "Conn_01x05" V 900 3250 50  0000 L CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x05_P2.54mm_Vertical" H 800 3550 50  0001 C CNN
+F 3 "~" H 800 3550 50  0001 C CNN
+	1    800  3550
+	0    1    1    0   
+$EndComp
+$Comp
+L Connector_Generic:Conn_01x01 J9
+U 1 1 5F424064
+P 1150 3550
+F 0 "J9" V 1050 3550 50  0000 L CNN
+F 1 "Conn_01x01" V 1250 3350 50  0000 L CNN
+F 2 "Connector_PinHeader_2.00mm:PinHeader_1x01_P2.00mm_Vertical" H 1150 3550 50  0001 C CNN
+F 3 "~" H 1150 3550 50  0001 C CNN
+	1    1150 3550
+	0    1    1    0   
+$EndComp
+$Comp
+L Connector_Generic:Conn_01x01 J10
+U 1 1 5F424721
+P 1600 3550
+F 0 "J10" V 1500 3550 50  0000 L CNN
+F 1 "Conn_01x01" V 1700 3350 50  0000 L CNN
+F 2 "Connector_PinHeader_2.00mm:PinHeader_1x01_P2.00mm_Vertical" H 1600 3550 50  0001 C CNN
+F 3 "~" H 1600 3550 50  0001 C CNN
+	1    1600 3550
+	0    1    1    0   
+$EndComp
+$Comp
+L Connector_Generic:Conn_01x01 J11
+U 1 1 5F425071
+P 1900 3550
+F 0 "J11" V 1800 3600 50  0000 L CNN
+F 1 "Conn_01x01" V 2000 3500 50  0000 L CNN
+F 2 "Connector_PinHeader_2.00mm:PinHeader_1x01_P2.00mm_Vertical" H 1900 3550 50  0001 C CNN
+F 3 "~" H 1900 3550 50  0001 C CNN
+	1    1900 3550
+	0    1    1    0   
+$EndComp
+$Comp
+L Connector_Generic:Conn_01x01 J12
+U 1 1 5F425982
+P 2300 3550
+F 0 "J12" V 2300 3600 50  0000 L CNN
+F 1 "Conn_01x01" V 2400 3550 50  0000 L CNN
+F 2 "Connector_PinHeader_2.00mm:PinHeader_1x01_P2.00mm_Vertical" H 2300 3550 50  0001 C CNN
+F 3 "~" H 2300 3550 50  0001 C CNN
+	1    2300 3550
+	0    1    1    0   
+$EndComp
+$Comp
+L Connector_Generic:Conn_01x01 J13
+U 1 1 5F425A76
+P 2950 3100
+F 0 "J13" V 2850 3000 50  0000 L CNN
+F 1 "Conn_01x01" V 3050 2750 50  0000 L CNN
+F 2 "Connector_PinHeader_2.00mm:PinHeader_1x01_P2.00mm_Vertical" H 2950 3100 50  0001 C CNN
+F 3 "~" H 2950 3100 50  0001 C CNN
+	1    2950 3100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	600  3100 600  3350
+$Comp
+L power:+3V3 #PWR082
+U 1 1 5F633091
+P 2850 3250
+F 0 "#PWR082" H 2850 3100 50  0001 C CNN
+F 1 "+3V3" V 2950 3200 50  0000 L CNN
+F 2 "" H 2850 3250 50  0001 C CNN
+F 3 "" H 2850 3250 50  0001 C CNN
+	1    2850 3250
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	1000 3350 1000 3300
+Wire Wire Line
+	1000 3300 1150 3300
+Wire Wire Line
+	1150 3300 1150 3350
+Wire Wire Line
+	1150 3300 1350 3300
+Wire Wire Line
+	1350 3300 1350 3350
+Connection ~ 1150 3300
+$Comp
+L power:+3.3VA #PWR025
+U 1 1 5F6E8221
+P 1350 3350
+F 0 "#PWR025" H 1350 3200 50  0001 C CNN
+F 1 "+3.3VA" H 1365 3523 50  0000 C CNN
+F 2 "" H 1350 3350 50  0001 C CNN
+F 3 "" H 1350 3350 50  0001 C CNN
+	1    1350 3350
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	900  3350 900  3250
+Wire Wire Line
+	900  3250 1600 3250
+Wire Wire Line
+	1600 3250 1600 3350
+Wire Wire Line
+	1600 3250 1700 3250
+Wire Wire Line
+	1700 3250 1700 3300
+Connection ~ 1600 3250
+$Comp
+L power:+5V #PWR081
+U 1 1 5F7A0C8E
+P 2000 3250
+F 0 "#PWR081" H 2000 3100 50  0001 C CNN
+F 1 "+5V" H 1900 3350 50  0000 C CNN
+F 2 "" H 2000 3250 50  0001 C CNN
+F 3 "" H 2000 3250 50  0001 C CNN
+	1    2000 3250
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	800  3350 800  3200
+$Comp
+L power:GNDD #PWR080
+U 1 1 5F85E0BD
+P 1700 3300
+F 0 "#PWR080" H 1700 3050 50  0001 C CNN
+F 1 "GNDD" H 1800 3300 50  0000 C CNN
+F 2 "" H 1700 3300 50  0001 C CNN
+F 3 "" H 1700 3300 50  0001 C CNN
+	1    1700 3300
+	1    0    0    -1  
+$EndComp
+Text GLabel 2450 3450 2    50   Input ~ 0
+ADC1_Batt
+Wire Wire Line
+	2300 3150 2300 3350
+Wire Wire Line
+	2300 3150 700  3150
+Wire Wire Line
+	700  3150 700  3350
+Connection ~ 2300 3150
+Wire Wire Line
+	800  3200 1900 3200
+Wire Wire Line
+	1900 3350 1900 3200
+Connection ~ 1900 3200
+Wire Wire Line
+	1900 3200 2000 3200
+Wire Wire Line
+	2000 3250 2000 3200
+Wire Notes Line
+	2850 3700 2850 5250
+Wire Notes Line
+	2850 3000 2850 600 
+Wire Notes Line
+	3100 3000 3100 3700
+Wire Notes Line
+	500  3000 3100 3000
+Wire Wire Line
+	2650 3250 2650 3100
+Wire Wire Line
+	2650 3100 2750 3100
+Wire Wire Line
+	2650 3250 2850 3250
+Connection ~ 2650 3100
+Wire Wire Line
+	600  3100 2650 3100
+Wire Wire Line
+	2450 3450 2400 3450
+Wire Wire Line
+	2400 3450 2400 3150
+Wire Wire Line
+	2300 3150 2400 3150
+$Comp
+L Device:C_Small C11
+U 1 1 5FC07769
+P 3150 2750
+F 0 "C11" H 3242 2796 50  0000 L CNN
+F 1 "0.1u" H 3242 2705 50  0000 L CNN
+F 2 "micelib:C_0402_1005Metric_HandSoldering" H 3150 2750 50  0001 C CNN
+F 3 "~" H 3150 2750 50  0001 C CNN
+	1    3150 2750
+	-1   0    0    -1  
+$EndComp
+$Comp
+L Connector_Generic:Conn_01x02 J14
+U 1 1 5F02C970
+P 4000 6400
+F 0 "J14" H 4080 6392 50  0000 L CNN
+F 1 "Conn_01x02" H 4080 6301 50  0000 L CNN
+F 2 "Connector_PinHeader_2.00mm:PinHeader_1x02_P2.00mm_Vertical" H 4000 6400 50  0001 C CNN
+F 3 "~" H 4000 6400 50  0001 C CNN
+	1    4000 6400
+	1    0    0    -1  
+$EndComp
+Text GLabel 4800 7000 2    50   Input ~ 0
+VBAT
+Wire Wire Line
+	4800 7000 4750 7000
+Wire Wire Line
+	4750 7000 4750 6750
+Wire Wire Line
+	4750 6750 4800 6750
+$Comp
+L Connector_Generic:Conn_01x02 J15
+U 1 1 5F08EE59
+P 4000 6650
+F 0 "J15" H 4080 6642 50  0000 L CNN
+F 1 "Conn_01x02" H 4080 6551 50  0000 L CNN
+F 2 "Connector_PinHeader_2.00mm:PinHeader_1x02_P2.00mm_Vertical" H 4000 6650 50  0001 C CNN
+F 3 "~" H 4000 6650 50  0001 C CNN
+	1    4000 6650
+	1    0    0    -1  
+$EndComp
+Text GLabel 3550 6400 0    50   Input ~ 0
+D+
+Text GLabel 3550 6500 0    50   Input ~ 0
+D-
+Wire Wire Line
+	3850 6900 3850 6850
+Wire Wire Line
+	3850 6850 3700 6850
+Wire Wire Line
+	3700 6850 3700 7000
+Wire Wire Line
+	3600 6850 3700 6850
+Connection ~ 3700 6850
+Wire Wire Line
+	3550 6400 3700 6400
+Wire Wire Line
+	3550 6500 3600 6500
+Wire Wire Line
+	3600 6500 3600 6750
+Wire Wire Line
+	3600 6750 3800 6750
+Connection ~ 3600 6500
+Wire Wire Line
+	3600 6500 3800 6500
+Wire Wire Line
+	3800 6650 3700 6650
+Wire Wire Line
+	3700 6650 3700 6400
+Connection ~ 3700 6400
+Wire Wire Line
+	3700 6400 3800 6400
+$Comp
+L power:+3V3 #PWR063
+U 1 1 5F46CE08
+P 8550 3350
+F 0 "#PWR063" H 8550 3200 50  0001 C CNN
+F 1 "+3V3" H 8565 3523 50  0000 C CNN
+F 2 "" H 8550 3350 50  0001 C CNN
+F 3 "" H 8550 3350 50  0001 C CNN
+	1    8550 3350
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3V3 #PWR075
+U 1 1 5F5371F3
+P 10350 1100
+F 0 "#PWR075" H 10350 950 50  0001 C CNN
+F 1 "+3V3" H 10365 1273 50  0000 C CNN
+F 2 "" H 10350 1100 50  0001 C CNN
+F 3 "" H 10350 1100 50  0001 C CNN
+	1    10350 1100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5300 7650 5800 7650
+Entry Bus Bus
+	-9450 4400 -9350 4500
 $EndSCHEMATC
