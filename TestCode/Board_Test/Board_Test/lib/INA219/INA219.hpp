@@ -31,7 +31,7 @@ class INA219{
         const uint8_t CURRENT_ADDRESS_INA = 0x04; // Shunt_Current_Reg
         const uint8_t Callib_ADDRESS_INA = 0x05; // Calibration_Reg
 
-        void Init(uint8_t address_ic, uint8_t brng, uint8_t gain, uint8_t badc, uint8_t sadc, uint8_t Mode) {
+        void Begin(uint8_t address_ic, uint8_t brng, uint8_t gain, uint8_t badc, uint8_t sadc, uint8_t Mode) {
             uint16_t send_data = ((brng & 0x01) << 13) | ((gain & 0x03) << 11) | ((badc & 0x07) << 7) | ((sadc & 0x07) << 3) | (Mode & 0x07);
             _Write(address_ic, CONFIG_ADDRESS_INA, (send_data >> 8) & 0xFF, send_data & 0xFF);
         }
