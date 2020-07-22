@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import time
 
+import view_agent
 
 class BaseAgent:
 
@@ -36,9 +37,6 @@ class BaseAgent:
 
 
 class SteerAgent(BaseAgent):
-
-    # steer_angle = None
-
     def __init__(self,
                  steer_angle=0.0,
                  jvec=np.zeros(3, dtype=np.float32),
@@ -65,49 +63,21 @@ class SteerAgent(BaseAgent):
         self.avec = ufunc(self.jvec, self.jvec_old)
         self.jvec_old = np.copy(self.jvec)
 
-    def update_jvec(self, jvec=np.zeros(3, dtype=np.float32)):
+    def update_jerk(self, jvec=np.zeros(3, dtype=np.float32)):
         self.jvec = jvec
 
 
-class view_agent:
-
-    def __init__(self):
-        self.fig = plt.figure()
-
-        self.pos_ax = self.fig.add_subplot(1, 1, 1)
-        self.pos_ax.set_xlim(0, 1000)
-        self.pos_ax.set_ylim(0, 1000)
-        self.pos_points = self.pos_ax.scatter([], [])
-
-        self.xy = []
-        self.pos_bg = self.fig.canvas.copy_from_bbox(self.pos_ax.bbox)
-
-        self.fig.canvas.draw()
-        self.fig.show()
-
-    def update_pos(self, points):
-        self.fig.canvas.restore_region(self.pos_bg)
-        self.xy.append(points)
-        self.pos_points.set_offsets(self.xy)
-        self.pos_ax.draw_artist(self.pos_points)
-        self.fig.canvas.blit(self.pos_ax.bbox)
-
-    def plot(self, points):
-        self.update_pos(points)
-        self.fig.canvas.flush_events()
-
-
 if __name__ == "__main__":
-    plot_view = view_agent()
-    sum_time = 0.0
+    plot_view = view_agent.ViewAgent(limit=1.2, len_points=50, icon_radius=0.05)
+    agent = SteerAgent()
+
     input(">>")
     for i in range(1000):
-        rand_array = np.random.randint(0, 1000, 2)
-        start = time.perf_counter_ns()
-        plot_view.plot(rand_array)
-        while True:
-            end = time.perf_counter_ns()
-            if ((end - start) * 1.0e-9) > 0.01:
-                break
-        sum_time += end - start
-    print("Done : " + str(1000.0 / sum_time / 1.0e-9) + " [fps]")
+        agent.update_jerk(np.array([np.cos(i / 100.0) + (np.random.randn() / 50.0),
+                                    np.sin(i / 100.0) + (np.random.randn() / 50.0),
+                                    np.sin(i / 100.0)]) * 1e+9)
+        agent.update_acc(lambda x, y: (x + y) * agent.ts / 2.0)
+        agent.update_vel(lambda x, y: (x + y) * agent.ts / 2.0)
+        agent.update_pos(lambda x, y: (x + y) * agent.ts / 2.0)
+        plot_view.plot(agent.pvec[:2], agent.pvec[2])
+    input(">>")
