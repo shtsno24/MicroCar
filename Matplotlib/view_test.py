@@ -49,18 +49,18 @@ class SteerAgent(BaseAgent):
         self.steer_angle = steer_angle
 
     def update_pos(self, func):
-        ufunc = np.frompyfunc(func, 2, 1)
-        self.pvec = ufunc(self.vvec, self.vvec_old)
+        ufunc = np.frompyfunc(func, 3, 1)
+        self.pvec = ufunc(self.vvec, self.vvec_old, self.pvec)
         self.vvec_old = np.copy(self.vvec)
 
     def update_vel(self, func):
-        ufunc = np.frompyfunc(func, 2, 1)
-        self.vvec = ufunc(self.avec, self.avec_old)
+        ufunc = np.frompyfunc(func, 3, 1)
+        self.vvec = ufunc(self.avec, self.avec_old, self.vvec)
         self.avec_old = np.copy(self.avec)
 
     def update_acc(self, func):
-        ufunc = np.frompyfunc(func, 2, 1)
-        self.avec = ufunc(self.jvec, self.jvec_old)
+        ufunc = np.frompyfunc(func, 3, 1)
+        self.avec = ufunc(self.jvec, self.jvec_old, self.avec)
         self.jvec_old = np.copy(self.jvec)
 
     def update_jerk(self, jvec=np.zeros(3, dtype=np.float32)):
@@ -68,16 +68,16 @@ class SteerAgent(BaseAgent):
 
 
 if __name__ == "__main__":
-    plot_view = view_agent.ViewAgent(limit=1.2, len_points=50, icon_radius=0.05)
+    plot_view = view_agent.ViewAgent(limit=200.0, len_points=1000, icon_radius=10.0)
     agent = SteerAgent()
 
     input(">>")
-    for i in range(1000):
-        agent.update_jerk(np.array([np.cos(i / 100.0) + (np.random.randn() / 50.0),
-                                    np.sin(i / 100.0) + (np.random.randn() / 50.0),
-                                    np.sin(i / 100.0)]) * 1e+9)
-        agent.update_acc(lambda x, y: (x + y) * agent.ts / 2.0)
-        agent.update_vel(lambda x, y: (x + y) * agent.ts / 2.0)
-        agent.update_pos(lambda x, y: (x + y) * agent.ts / 2.0)
+    for i in range(12000):
+        agent.update_jerk(np.array([np.cos(i / 4000.0) + (np.random.randn() / 50.0),
+                                    np.sin(i / 4000.0) + (np.random.randn() / 50.0),
+                                    np.sin(i / 4000.0)]))
+        agent.update_acc(lambda x, y, z: z + (x + y) * agent.ts / 2.0)
+        agent.update_vel(lambda x, y, z: z + (x + y) * agent.ts / 2.0)
+        agent.update_pos(lambda x, y, z: z + (x + y) * agent.ts / 2.0)
         plot_view.plot(agent.pvec[:2], agent.pvec[2])
     input(">>")
