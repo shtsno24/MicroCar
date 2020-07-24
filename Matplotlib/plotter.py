@@ -103,4 +103,4 @@ if __name__ == "__main__":
             if ((end - start) * 1.0e-9) > 0.001:
                 break
         sum_time += end - start
-    print("Done : " + str(1000.0 / sum_time / 1.0e-9) + " [fps]")
+    input("Done : " + str(1000.0 / sum_time / 1.0e-9) + " [fps]")
