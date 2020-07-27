@@ -7,21 +7,21 @@
 
 class DRV8830{
     private:
-        uint8_t Send_Data(uint8_t reg, uint8_t data){ 
+        void Send_Data(uint8_t reg, uint8_t data){ 
             Wire.beginTransmission(DRV8830_ADDR);
             Wire.write(reg);
             Wire.write(data);
             Wire.endTransmission();
         }
 
-        uint8_t Receive_Data_Single_Byte(uint8_t reg, uint8_t data){ 
+        void Receive_Data_Single_Byte(uint8_t reg, uint8_t data[]){ 
             Wire.beginTransmission(DRV8830_ADDR);
             Wire.write(reg); //  read register 0x01
             Wire.endTransmission();
 
-            Wire.requestFrom(addr, 1);
+            Wire.requestFrom(DRV8830_ADDR, 1);
             while (Wire.available()) {
-                data = Wire.read();
+                data[0] = Wire.read();
             }
         }
 
@@ -47,13 +47,14 @@ class DRV8830{
         } 
 
         void Set_Pow_Dir(uint8_t power, uint8_t direction){
-            Send_Data(CTRL_REG, (power << 2) | direction);
+            uint8_t power_hex = (uint8_t)(57 * (power / 100.0) + 6); // 0x3F - 0x06 = 0x39(57 Dec)
+            Send_Data(CTRL_REG, (power_hex << 2) | direction);
         }
 
         uint8_t Read_Fault(){
-            uint8_t data;
-            Receive_Data(FAULT_REG, data);
-            return data;
+            uint8_t data[]={0};
+            Receive_Data_Single_Byte(FAULT_REG, data);
+            return data[0];
         }
 
         void Print_Fault(){
