@@ -1,5 +1,56 @@
 /*
  * INA219 Library for Arduino
+ * INA219 is 13bit ADC with I2C  
+ * 
+ * V_LSB_shunt : PG / 4096(2^12)(=40mV/4096=10uV)
+ * V_LSB_bus   : BRNG / 4096(=16V/4096=4mV)
+ * 
+ * V_Shunt = Shunt_Voltage_Register * (PG / 4096)
+ * V_Bus   = Bus_Voltage_Register * (BRNG / 4096)
+ * Sampled Value = Register Value * V_LSB
+ * 
+ * Current Register = Shunt Voltage Register * Calibration Register / 4096
+ * Power Register = Shunt Voltage Register * Current Register / 5000
+ * 
+ * I_shunt = Current Register * LSB_Current
+ * Current Register = I_shunt / LSB_Current = V_Shunt / R_Shunt / LSB_Current
+ * Current Register = Shunt_Voltage_Register * (PG / 4096) / R_Shunt / LSB_Current
+ * Shunt Voltage Register * Calibration Register / 4096 = Shunt_Voltage_Register * (PG / 4096) / R_Shunt / LSB_Current
+ * Calibration Register = RoundDown(((PG / 4096) * 4096) / (LSB_Current * R_Shunt) * (1V / (100000 * 10uV)))
+ * Calibration Register = RoundDown(0.04096 / (LSB_Current * R_shunt))
+ * 
+ * V_BusMax = 16V -> BRNG = 0
+ * V_ShuntMax = 40mV -> PGA = 0
+ * R_Shunt = 0.01\Ohm
+ * I_Max_Pos = 40mV / 0.01\Ohm = 4A
+ * I_Max_Expected = I_Max_Pos
+ * LSB_Min_15 = I_Max_Expected / (2^15) ~ 122.07uA
+ * LSB_Max_12 = I_Max_Expected / (2^12) ~ 976.56uA
+ * -> LSB_Current = 128uA
+ * 
+ * Calibration Register = RoundDown(0.04096 / (125uA * 0.01)) = 32768 =0x8000
+ * P/LSB_Power = (I_Shunt / LSB_Current) * (V_Bus / 0.004) / 5000 = P / (LSB_Current * 20)
+ * 
+ * LSB_Power = 20 * LSB_Current = 20 * 128uA = 2560uA
+ * 
+ * I_Max_Shunt_Calc = LSB_Current * 32767 ~ 4.194176A
+ * if I_Max_Shunt_Calc > I_Max_Pos:
+ *  I_Max_OVF = I_Max_Pos       <- This One(4A)
+ * else:
+ *  I_Max_OVF = I_Max_Shunt_Calc
+ * 
+ * V_Max_Shunt_Calc = I_Max_OVF * R_Shunt
+ * if V_Max_Shunt_Calc > V_ShuntMax:
+ *  V_Max_OVF = V_ShuntMax      <- This One(40mV)
+ * else:
+ *  V_Max_OVF = V_Max_Shunt_Calc <- This One(40mV)
+ * 
+ * P_Max = I_Max_OVF * V_Bus_Max = 4A * 16V = 64W
+ * 
+ * Option:
+ * Corrected Calibration Register = Calibration Register = RoundDown(Calibration Register * I_Measured / I_INA219)
+ * 
+ * http://cdwilson.us/articles/understanding-the-INA219/
  */
 #include "Arduino.h"
 #include "Wire.h"
