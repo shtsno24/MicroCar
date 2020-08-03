@@ -26,9 +26,9 @@
  * I_Max_Expected = I_Max_Pos
  * LSB_Min_15 = I_Max_Expected / (2^15) ~ 122.07uA
  * LSB_Max_12 = I_Max_Expected / (2^12) ~ 976.56uA
- * -> LSB_Current = 128uA
+ * -> LSB_Current = 976.56uA
  * 
- * Calibration Register = RoundDown(0.04096 / (125uA * 0.01)) = 32768 =0x8000
+ * Calibration Register = RoundDown(0.04096 / (976.56uA * 0.01)) = 4194.31 ~ 0x1062
  * P/LSB_Power = (I_Shunt / LSB_Current) * (V_Bus / 0.004) / 5000 = P / (LSB_Current * 20)
  * 
  * LSB_Power = 20 * LSB_Current = 20 * 128uA = 2560uA
@@ -61,16 +61,22 @@ class INA219{
         void _Write(uint8_t address, uint8_t reg, uint8_t data_h, uint8_t data_l){
             Wire.beginTransmission(address);
             Wire.write(reg);
-            Wire.write((data_h >> 8) & 0xFF);
-            Wire.write(data_l & 0xFF);
+            Wire.write(data_h);
+            Wire.write(data_l);
             Wire.endTransmission();
         }
 
-        void _Read(uint8_t address, uint8_t reg){
-            Wire.beginTransmission(address_ic);
-            Wire.write(reg);
+        void _Read(uint8_t address, uint8_t reg, uint8_t data[]){ 
+            Wire.beginTransmission(address);
+            Wire.write(reg); //  read register 0x01
             Wire.endTransmission();
-            Wire.requestFrom(address_ic, 2);
+
+            Wire.requestFrom(address, 2);
+            uint8_t i = 0;
+            while (Wire.available()) {
+                data[i] = Wire.read();
+                i += 1;
+            }
         }
 
     public:
@@ -82,31 +88,34 @@ class INA219{
         const uint8_t CURRENT_ADDRESS_INA = 0x04; // Shunt_Current_Reg
         const uint8_t CALIB_ADDRESS_INA = 0x05; // Calibration_Reg
 
-        void Begin(uint8_t address_ic, uint8_t brng, uint8_t gain, uint8_t badc, uint8_t sadc, uint8_t Mode) {
+        uint16_t CALIB_REGISTER_DATA = 0x1062;
+        float I_LSB_Shunt = 128 * 1.0e-6;
+        float V_LSB_Shunt = 0.04 / 4096.0;
+        float V_LSB_Bus = 16.0 / 4096.0;
+
+        void Begin(uint8_t address_ic, uint8_t brng, uint8_t pg, uint8_t badc, uint8_t sadc, uint8_t mode, uint16_t calib) {
             /* name : bit   : Configure  
              * RST  : 15    : 1 -> Reset  
-             * BRNG : 13    : 0 -> 16V FSR(LSB_BUS 4mV)
-             *                1 -> 32V FSR(LSB_BUS 8mV)     *
-             * PG   : 12-11 : 0 -> \pm 40[mV](LSB_SHUNT 10uV)
+             * BRNG : 13    : 0 -> 16V FSR(LSB_BUS 4mV) *
+             *                1 -> 32V FSR(LSB_BUS 8mV)
+             * PG   : 12-11 : 0 -> \pm 40[mV](LSB_SHUNT 10uV) *
              *                1 -> \pm 80[mV](LSB_SHUNT 20uV)
              *                2 -> \pm 160[mV](LSB_SHUNT 40uV)
-             *                3 -> \pm 320[mV](LSB_SHUNT 80uV) *
-             * BDAC : 10-7  : Bit-Width/Sampling Time Settings (default = 0bX11)
-             * SADC : 6-3   : Bit-Width/Sampling Time Settings (default = 0bX11)
+             *                3 -> \pm 320[mV](LSB_SHUNT 80uV)
+             * BDAC : 10-7  : Bit-Width/Sampling Time Settings (0b0111)
+             * SADC : 6-3   : Bit-Width/Sampling Time Settings (0b0111)
              * MODE : 2-0   : Mode Settings (default = 0b111)
              */
+
             ADDRESS_INA = address_ic;
-            uint16_t send_data = 0x00 | (((brng & 0x01) << 13) | ((gain & 0x03) << 11) | ((badc & 0x0F) << 7) | ((sadc & 0x0F) << 3) | (Mode & 0x07));
+            uint16_t send_data = 0x00 | (((brng & 0x01) << 13) | ((pg & 0x03) << 11) | ((badc & 0x0F) << 7) | ((sadc & 0x0F) << 3) | (mode & 0x07));
             _Write(ADDRESS_INA, CONFIG_ADDRESS_INA, (send_data >> 8) & 0xFF, send_data & 0xFF);
+            _Write(ADDRESS_INA, CALIB_ADDRESS_INA, (calib >> 8) & 0xFF, calib & 0xFF);
         }
 
-        int16_t INA219_Read(uint8_t reg, uint8_t range, uint8_t gain) {
-            int16_t Data;
-            _Read(ADDRESS_INA, reg);
-            while (Wire.available());
-            Data = Wire.read() << 8 | Wire.read();
-            Data = (Data >> gain) * range;
-            return Data;
+        float INA219_Read(uint8_t reg, float LSB) {
+            uint8_t data_reg[2];
+            _Read(ADDRESS_INA, reg, data_reg);
+            return (float)((int16_t)data_reg[1] << 8 | (int16_t)data_reg[0]) * LSB;
         }
-
 };

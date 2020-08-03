@@ -4,14 +4,14 @@
 
 1. Determination V_ShuntMax and R_Shunt.(In this time, the parameters are set to 40mV and 0.01Ω, respectively.)
 2. Calculate Imax.(0.040V / 0.01Ω = 4A)
-3. Calculate LSB_Current.(Imax / 2^15 < LSB_Current < Imax / 2^12 -> LSB_Current = 128uA ~ Imax / 2^15)  
-4. Set the calibration register.(0.04096 / (LSB_Current * R_Shunt) = 32768 = 0x8000)(@0x04, 2Bytes)  
+3. Calculate LSB_Current.(Imax / 2^15 < LSB_Current < Imax / 2^12 -> LSB_Current = 0.976.56mA ~ Imax / 2^12)  
+4. Set the calibration register.(0.04096 / (LSB_Current * R_Shunt) ~ 4194 = 0x1062)(@0x05, 2Bytes)  
 
 ## Set Up Configureation Register  
 
 1. Determination V_LSB_Shunt and V_LSB_Bus.(In this time, the parameters are set to 40mV/4096=10uV and 16V/4096=4mV, respectively.)(BRNG = 0b0(16V), PG = 0b00(40mV))  
-2. Determination SADC and BADC.(0b1000, respectively.)(12bit, 532us)  
-3. Determination Mode(0b121, Shunt / Bus Voltage, Continuous)  
+2. Determination SADC and BADC.(0b0111, respectively.)(12bit, 532us)  
+3. Determination Mode(0b111, Shunt / Bus Voltage, Continuous)  
 
 ## Measure V_Shunt and I_Shunt  
 
