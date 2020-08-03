@@ -46,7 +46,8 @@ void loop() {
     }
     SerialBT.print(pow_md);
     SerialBT.println("%");
-    SerialBT.print(CS0.INA219_Read(CS0.CURRENT_ADDRESS_INA, CS0.I_LSB_Shunt));
+    SerialBT.print(CS0.INA219_Read(CS0.CURRENT_ADDRESS_INA, CS0.I_LSB_Shunt), 6);
+    // SerialBT.print(CS0.INA219_Read(CS0.VSHUNT_ADDRESS_INA, CS0.V_LSB_Shunt), 6);
     SerialBT.println("[A]");
     delay(500);
 }

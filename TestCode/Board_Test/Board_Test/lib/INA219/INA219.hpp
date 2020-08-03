@@ -24,14 +24,14 @@
  * R_Shunt = 0.01\Ohm
  * I_Max_Pos = 40mV / 0.01\Ohm = 4A
  * I_Max_Expected = I_Max_Pos
- * LSB_Min_15 = I_Max_Expected / (2^15) ~ 122.07uA
- * LSB_Max_12 = I_Max_Expected / (2^12) ~ 976.56uA
- * -> LSB_Current = 976.56uA
+ * LSB_Min_15 = I_Max_Expected / (2^15) ~ 1.2207e-4 [uA]
+ * LSB_Max_12 = I_Max_Expected / (2^12) ~ 9.7656e-4 [uA]
+ * -> LSB_Current = 1.28e-4 [uA]
  * 
- * Calibration Register = RoundDown(0.04096 / (976.56uA * 0.01)) = 4194.31 ~ 0x1062
+ * Calibration Register = RoundDown(0.04096 / (1.28e-7[mA] * 0.01)) = 32000 = 0x7D00
  * P/LSB_Power = (I_Shunt / LSB_Current) * (V_Bus / 0.004) / 5000 = P / (LSB_Current * 20)
  * 
- * LSB_Power = 20 * LSB_Current = 20 * 128uA = 2560uA
+ * LSB_Power = 20 * LSB_Current = 20 * 128uA = 2560uW
  * 
  * I_Max_Shunt_Calc = LSB_Current * 32767 ~ 4.194176A
  * if I_Max_Shunt_Calc > I_Max_Pos:
@@ -88,10 +88,10 @@ class INA219{
         const uint8_t CURRENT_ADDRESS_INA = 0x04; // Shunt_Current_Reg
         const uint8_t CALIB_ADDRESS_INA = 0x05; // Calibration_Reg
 
-        uint16_t CALIB_REGISTER_DATA = 0x1062;
-        float I_LSB_Shunt = 128 * 1.0e-6;
-        float V_LSB_Shunt = 0.04 / 4096.0;
-        float V_LSB_Bus = 16.0 / 4096.0;
+        uint16_t CALIB_REGISTER_DATA = 0x7D00;
+        float I_LSB_Shunt = 1.28 * 1.0e-4 ; // [A]
+        float V_LSB_Shunt = 10.0 * 1.0e-6; // [V]
+        float V_LSB_Bus = 4.0 * 1.0e-3; // [V]
 
         void Begin(uint8_t address_ic, uint8_t brng, uint8_t pg, uint8_t badc, uint8_t sadc, uint8_t mode, uint16_t calib) {
             /* name : bit   : Configure  
@@ -116,6 +116,6 @@ class INA219{
         float INA219_Read(uint8_t reg, float LSB) {
             uint8_t data_reg[2];
             _Read(ADDRESS_INA, reg, data_reg);
-            return (float)((int16_t)data_reg[1] << 8 | (int16_t)data_reg[0]) * LSB;
+            return (float)(int16_t)((uint16_t)data_reg[1] << 8 | (uint16_t)data_reg[0]) * LSB;
         }
 };
