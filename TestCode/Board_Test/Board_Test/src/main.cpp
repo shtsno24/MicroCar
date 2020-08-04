@@ -34,20 +34,23 @@ void setup() {
 }
 
 void loop() {
-    SerialBT.println("from Bluetooth!");
+    // SerialBT.println("from Bluetooth!");
     IMU0.ReadSensor();
-    SerialBT.print("IMU0 : ax = ");
+    // SerialBT.print("IMU0 : ax = ");
     SerialBT.print(IMU0.IMU_DATA[IMU0.ax]);
-    SerialBT.println("[m/s^2]");
+    // SerialBT.println("[m/s^2]");
+    SerialBT.print(",");
     pow_md += step_md;
     MD0.Set_Pow_Dir(pow_md, 0x01);
-    if(pow_md >= 50){
+    if(pow_md == 0 || pow_md >= 100){
         step_md *= -1;
     }
     SerialBT.print(pow_md);
-    SerialBT.println("%");
-    SerialBT.print(CS0.INA219_Read(CS0.CURRENT_ADDRESS_INA, CS0.I_LSB_Shunt), 6);
+    SerialBT.print(",");
+    // SerialBT.println("%");
+    SerialBT.println(CS0.INA219_Read(CS0.CURRENT_ADDRESS_INA, CS0.I_LSB_Shunt), 6);
+    // SerialBT.println("[A]");
     // SerialBT.print(CS0.INA219_Read(CS0.VSHUNT_ADDRESS_INA, CS0.V_LSB_Shunt), 6);
-    SerialBT.println("[A]");
-    delay(500);
+    // SerialBT.println("[V]");
+    delay(100 - pow_md);
 }

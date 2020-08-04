@@ -24,11 +24,11 @@
  * R_Shunt = 0.01\Ohm
  * I_Max_Pos = 40mV / 0.01\Ohm = 4A
  * I_Max_Expected = I_Max_Pos
- * LSB_Min_15 = I_Max_Expected / (2^15) ~ 1.2207e-4 [uA]
- * LSB_Max_12 = I_Max_Expected / (2^12) ~ 9.7656e-4 [uA]
- * -> LSB_Current = 1.28e-4 [uA]
+ * LSB_Min_15 = I_Max_Expected / (2^15) ~ 1.2207e-4 [A]
+ * LSB_Max_12 = I_Max_Expected / (2^12) ~ 9.7656e-4 [A]
+ * -> LSB_Current = 1.28e-4 [A]
  * 
- * Calibration Register = RoundDown(0.04096 / (1.28e-7[mA] * 0.01)) = 32000 = 0x7D00
+ * Calibration Register = RoundDown(0.04096 / (1.28e-4[A] * 0.01)) = 32000 = 0x7D00
  * P/LSB_Power = (I_Shunt / LSB_Current) * (V_Bus / 0.004) / 5000 = P / (LSB_Current * 20)
  * 
  * LSB_Power = 20 * LSB_Current = 20 * 128uA = 2560uW
@@ -68,7 +68,7 @@ class INA219{
 
         void _Read(uint8_t address, uint8_t reg, uint8_t data[]){ 
             Wire.beginTransmission(address);
-            Wire.write(reg); //  read register 0x01
+            Wire.write(reg);
             Wire.endTransmission();
 
             Wire.requestFrom(address, 2);
@@ -93,7 +93,7 @@ class INA219{
         float V_LSB_Shunt = 10.0 * 1.0e-6; // [V]
         float V_LSB_Bus = 4.0 * 1.0e-3; // [V]
 
-        void Begin(uint8_t address_ic, uint8_t brng, uint8_t pg, uint8_t badc, uint8_t sadc, uint8_t mode, uint16_t calib) {
+        void Begin(uint8_t address_ic, uint16_t brng, uint16_t pg, uint16_t badc, uint16_t sadc, uint16_t mode, uint16_t calib) {
             /* name : bit   : Configure  
              * RST  : 15    : 1 -> Reset  
              * BRNG : 13    : 0 -> 16V FSR(LSB_BUS 4mV) *
@@ -108,7 +108,7 @@ class INA219{
              */
 
             ADDRESS_INA = address_ic;
-            uint16_t send_data = 0x00 | (((brng & 0x01) << 13) | ((pg & 0x03) << 11) | ((badc & 0x0F) << 7) | ((sadc & 0x0F) << 3) | (mode & 0x07));
+            uint16_t send_data = 0x0000 | ((brng & 0x01) << 13) | ((pg & 0x03) << 11) | ((badc & 0x0F) << 7) | ((sadc & 0x0F) << 3) | (mode & 0x07);
             _Write(ADDRESS_INA, CONFIG_ADDRESS_INA, (send_data >> 8) & 0xFF, send_data & 0xFF);
             _Write(ADDRESS_INA, CALIB_ADDRESS_INA, (calib >> 8) & 0xFF, calib & 0xFF);
         }
@@ -116,6 +116,6 @@ class INA219{
         float INA219_Read(uint8_t reg, float LSB) {
             uint8_t data_reg[2];
             _Read(ADDRESS_INA, reg, data_reg);
-            return (float)(int16_t)((uint16_t)data_reg[1] << 8 | (uint16_t)data_reg[0]) * LSB;
+            return (float)(int16_t)((uint16_t)data_reg[0] << 8 | (uint16_t)data_reg[1]) * LSB;
         }
 };
