@@ -5,9 +5,11 @@
 #include "MPU6500.hpp"
 #include "DRV8830.hpp"
 #include "INA219.hpp"
+#include "GS1502.hpp"
 
 DRV8830 MD0;
 INA219 CS0;
+GS1502 SERVO0;
 SPIClass SPI2(HSPI);
 MPU6500 IMU0;
 BluetoothSerial SerialBT;
@@ -29,6 +31,8 @@ void setup() {
 
     CS0.Begin(0x40, 0, 0, 0x07, 0x07, 0x07, CS0.CALIB_REGISTER_DATA);
 
+    SERVO0.Begin(0, 32, 1.0 / 0.020, 16);
+
     SerialBT.begin("ESP32");
     Serial.println("Bluetooth : Done");
 }
@@ -42,6 +46,7 @@ void loop() {
     SerialBT.print(",");
     pow_md += step_md;
     MD0.Set_Pow_Dir(pow_md, 0x01);
+    SERVO0.set_pos((float)pow_md * 2.0 - 100.0);
     if(pow_md == 0 || pow_md >= 100){
         step_md *= -1;
     }

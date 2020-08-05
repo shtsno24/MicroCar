@@ -3,7 +3,8 @@ uint16_t pw2cnt(float);
 
 void setup() {
   /*
-     pulse precision : 0.01[s] / 16[bit] = 1.52587891e-7 [s/bit]
+    pulse precision : 0.010[s] / 16[bit] = 1.52587891e-7 [s/bit]
+                      0.020[s] / 16[bit] = 3.05175781e-7 [s/bit]
   */
   Serial.begin(115200);
   ledcSetup(0, 100, 16); // Timer channel, Base clock, counter bit width
@@ -60,6 +61,7 @@ uint16_t pw2cnt(float pulse_width) {
   /*
       pulse_width is [700us, 2300us]
       pulse precision : 10000[us] / 2^16 = 1.52587891e-1 [us/single_pulse_width]
+                      : 20000[us] / 16[bit] = 3.05175781e-1 [us/bit]
   */
   uint16_t count;
   count = uint16_t(pulse_width / 1.52587891e-1);
