@@ -694,6 +694,17 @@ Wire Wire Line
 	5300 3600 5200 3600
 Wire Wire Line
 	5200 3600 5200 3500
+$Comp
+L schematic-rescue:FT231XS-Interface_USB U5
+U 1 1 5E3955E4
+P 4150 1650
+F 0 "U5" H 4150 1850 50  0000 C CNN
+F 1 "FT231XS" H 4150 1750 50  0000 C CNN
+F 2 "Package_SO:SSOP-20_3.9x8.7mm_P0.635mm" H 4750 700 50  0001 C CNN
+F 3 "http://www.ftdichip.com/Products/ICs/FT231X.html" H 4150 1650 50  0001 C CNN
+	1    4150 1650
+	1    0    0    -1  
+$EndComp
 Text GLabel 3400 1450 0    50   Input ~ 0
 D+
 Text GLabel 3400 1350 0    50   Input ~ 0
@@ -3804,15 +3815,4 @@ Wire Wire Line
 	5300 7650 5800 7650
 Entry Bus Bus
 	-9450 4400 -9350 4500
-$Comp
-L Interface_USB:FT231XS U?
-U 1 1 5F3CDCB9
-P 4150 1650
-F 0 "U?" H 4150 1600 50  0000 C CNN
-F 1 "FT231XS" H 4150 1700 50  0000 C CNN
-F 2 "Package_SO:SSOP-20_3.9x8.7mm_P0.635mm" H 5150 850 50  0001 C CNN
-F 3 "https://www.ftdichip.com/Support/Documents/DataSheets/ICs/DS_FT231X.pdf" H 4150 1650 50  0001 C CNN
-	1    4150 1650
-	1    0    0    -1  
-$EndComp
 $EndSCHEMATC
