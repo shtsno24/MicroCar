@@ -1,3 +1,4 @@
 (sym_lib_table
   (lib (name schematic-rescue)(type Legacy)(uri ${KIPRJMOD}/schematic-rescue.lib)(options "")(descr ""))
+  (lib (name KiCad_HandsOn)(type Legacy)(uri C:/D/blog/kicad5/2_SimbolEditor/KiCad_HandsOn.lib)(options "")(descr ""))
 )

@@ -13,7 +13,6 @@ class Scatter:
 
         # axis setup
         self.pos_ax = ax
-        # self.pos_bg = self.fig.canvas.copy_from_bbox(self.pos_ax.bbox)
         self.pos_ax.set_xlim(-plot_area[0], plot_area[0])
         self.pos_ax.set_ylim(-plot_area[1], plot_area[1])
         self.pos_points = self.pos_ax.scatter([], [])
@@ -52,7 +51,7 @@ class Scatter:
 
 class Line:
 
-    def __init__(self, fig, ax, plot_area=(1000, 1000), len_points=1000):
+    def __init__(self, fig, ax, plot_area=(1000, 1000), len_points=100):
         self.fig = fig
         self.plot_area = plot_area
 
@@ -66,7 +65,7 @@ class Line:
         self.fig.canvas.draw()
         self.fig.show()
 
-    def update_data(self, points, orientation=0.0):
+    def update_data(self, points):
         # draw background with white
         self.line_ax.draw_artist(self.line_ax.patch)
 
@@ -85,16 +84,17 @@ class Line:
 
 
 if __name__ == "__main__":
+    loop_times = 5000
     fig = plt.figure()
     pos_ax = fig.add_subplot(2, 1, 1)
     line_ax = fig.add_subplot(2, 1, 2)
-    scatter_view = Scatter(fig, pos_ax)
-    line_view = Line(fig, line_ax)
+    scatter_view = Scatter(fig, pos_ax, len_points=1250, show_icon=True)
+    line_view = Line(fig, line_ax, plot_area=(1250, 1000), len_points=1250)
 
-    sum_time = 0.0
     input(">>")
-    for i in range(1000):
-        rand_array = np.random.randint(0, 1000, 2)
+    sum_time = 0.0
+    for i in range(loop_times):
+        rand_array = np.random.randint(-1000, 1000, 2)
         start = time.perf_counter_ns()
         scatter_view.plot(rand_array)
         line_view.plot(rand_array[1])
@@ -103,4 +103,4 @@ if __name__ == "__main__":
             if ((end - start) * 1.0e-9) > 0.001:
                 break
         sum_time += end - start
-    input("Done : " + str(1000.0 / sum_time / 1.0e-9) + " [fps]")
+    input("Done : " + str(loop_times / sum_time / 1.0e-9) + " [fps]")
