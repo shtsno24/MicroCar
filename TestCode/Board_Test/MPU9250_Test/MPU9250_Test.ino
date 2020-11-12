@@ -1,9 +1,10 @@
 #include <SPI.h>
-#include "IMU_Test.h"
+//#include "IMU_Test.h"
+#include "MPU9250_Test.h"
 /*
    Test Code for MPU9250 with ESP32
 
-   IO5    : HSPI_CS
+   IO15    : HSPI_CS
    IO14   : HSPI_CLK
    IO12   : HSPI_MISO
    IO13   : HSPI_MOSI
@@ -14,7 +15,7 @@
    CPOL     : 1
    CPHA     : 0
 */
-#define IMU_CS 5
+#define IMU_CS 15
 
 
 float ax, ay, az, pitch, roll, yaw;

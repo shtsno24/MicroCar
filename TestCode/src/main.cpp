@@ -33,7 +33,7 @@ void setup() {
 
     SERVO0.Begin(0, 32, 1.0 / 0.020, 16);
 
-    SerialBT.begin("ESP32");
+    SerialBT.begin("MicroCar_ESP32");
     Serial.println("Bluetooth : Done");
 }
 

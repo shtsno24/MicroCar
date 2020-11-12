@@ -3607,17 +3607,6 @@ Connection ~ 10850 2350
 NoConn ~ 10250 2850
 NoConn ~ 10250 2950
 NoConn ~ 10250 3750
-$Comp
-L Interface:PCA9306DC U9
-U 1 1 5FA4A095
-P 9250 5900
-F 0 "U9" V 8800 6250 50  0000 R CNN
-F 1 "PCA9306DC" V 8900 6400 50  0000 R CNN
-F 2 "Package_SO:VSSOP-8_2.3x2mm_P0.5mm" H 9250 5450 50  0001 C CNN
-F 3 "https://www.nxp.com/docs/en/data-sheet/PCA9306.pdf" H 8950 6350 50  0001 C CNN
-	1    9250 5900
-	0    1    1    0   
-$EndComp
 Wire Wire Line
 	9300 5100 9300 5050
 Wire Wire Line
@@ -3968,14 +3957,25 @@ I2C_SDA_5V
 Text GLabel 7350 5600 0    50   Input ~ 0
 I2C_SCL_5V
 $Comp
-L NXTMotor4Arduino-cache:+3.3V #PWR?
+L NXTMotor4Arduino-cache:+3.3V #PWR0101
 U 1 1 5F9F5EBE
 P 7100 750
-F 0 "#PWR?" H 7100 600 50  0001 C CNN
+F 0 "#PWR0101" H 7100 600 50  0001 C CNN
 F 1 "+3.3V" H 7100 900 50  0000 C CNN
 F 2 "" H 7100 750 50  0001 C CNN
 F 3 "" H 7100 750 50  0001 C CNN
 	1    7100 750 
 	1    0    0    -1  
+$EndComp
+$Comp
+L Interface:PCA9306DC1 U9
+U 1 1 5FA9D6EB
+P 9250 5900
+F 0 "U9" V 8800 6150 50  0000 R CNN
+F 1 "PCA9306DC1" V 8900 6450 50  0000 R CNN
+F 2 "micelib:VSSOP-8_2.3x2mm_P0.5mm_hand_solder" H 9250 5450 50  0001 C CNN
+F 3 "https://www.nxp.com/docs/en/data-sheet/PCA9306.pdf" H 8950 6350 50  0001 C CNN
+	1    9250 5900
+	0    1    1    0   
 $EndComp
 $EndSCHEMATC

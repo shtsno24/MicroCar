@@ -1,4 +1,4 @@
-update=2020/09/29 23:19:54
+update=2020/11/04 17:03:42
 version=1
 last_client=kicad
 [general]
@@ -27,11 +27,11 @@ version=1
 PageLayoutDescrFile=
 LastNetListRead=schematic.net
 CopperLayerCount=2
-BoardThickness=1.2
+BoardThickness=0.8
 AllowMicroVias=0
 AllowBlindVias=0
 RequireCourtyardDefinitions=0
-ProhibitOverlappingCourtyards=1
+ProhibitOverlappingCourtyards=0
 MinTrackWidth=0.2
 MinViaDiameter=0.4
 MinViaDrill=0.3

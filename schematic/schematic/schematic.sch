@@ -324,7 +324,7 @@ U 1 1 5E11F2BF
 P 800 6900
 F 0 "J2" H 600 7250 50  0000 C CNN
 F 1 "USB_B_Micro" H 1000 7250 50  0000 C CNN
-F 2 "Connector_USB:USB_Micro-B_Molex-105133-0001" H 950 6850 50  0001 C CNN
+F 2 "Connector_USB:USB_Micro-B_Amphenol_10103594-0001LF_Horizontal" H 950 6850 50  0001 C CNN
 F 3 "~" H 950 6850 50  0001 C CNN
 	1    800  6900
 	1    0    0    -1  
@@ -3607,17 +3607,6 @@ Connection ~ 10850 2350
 NoConn ~ 10250 2850
 NoConn ~ 10250 2950
 NoConn ~ 10250 3750
-$Comp
-L Interface:PCA9306DC U9
-U 1 1 5FA4A095
-P 9250 5900
-F 0 "U9" V 8800 6250 50  0000 R CNN
-F 1 "PCA9306DC" V 8900 6400 50  0000 R CNN
-F 2 "Package_SO:VSSOP-8_2.3x2mm_P0.5mm" H 9250 5450 50  0001 C CNN
-F 3 "https://www.nxp.com/docs/en/data-sheet/PCA9306.pdf" H 8950 6350 50  0001 C CNN
-	1    9250 5900
-	0    1    1    0   
-$EndComp
 Wire Wire Line
 	9300 5100 9300 5050
 Wire Wire Line
@@ -3977,5 +3966,16 @@ F 2 "" H 7100 750 50  0001 C CNN
 F 3 "" H 7100 750 50  0001 C CNN
 	1    7100 750 
 	1    0    0    -1  
+$EndComp
+$Comp
+L Interface:PCA9306DC1 U9
+U 1 1 5FA9D6EB
+P 9250 5900
+F 0 "U9" V 8800 6150 50  0000 R CNN
+F 1 "PCA9306DC1" V 8900 6450 50  0000 R CNN
+F 2 "micelib:VSSOP-8_2.3x2mm_P0.5mm_hand_solder" H 9250 5450 50  0001 C CNN
+F 3 "https://www.nxp.com/docs/en/data-sheet/PCA9306.pdf" H 8950 6350 50  0001 C CNN
+	1    9250 5900
+	0    1    1    0   
 $EndComp
 $EndSCHEMATC
