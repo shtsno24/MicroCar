@@ -1,9 +1,0 @@
-dir | Rename-Item -NewName { $_.Name -replace '-F.Cu\.gbr','.GTL' }
-dir | Rename-Item -NewName { $_.Name -replace '-B.Cu\.gbr','.GBL' }
-dir | Rename-Item -NewName { $_.Name -replace '-F.Mask\.gbr','.GTS' }
-dir | Rename-Item -NewName { $_.Name -replace '-B.Mask\.gbr','.GBS' }
-dir | Rename-Item -NewName { $_.Name -replace '-F.SilkS\.gbr','.GTO' }
-dir | Rename-Item -NewName { $_.Name -replace '-B.SilkS\.gbr','.GBO' }
-dir | Rename-Item -NewName { $_.Name -replace '-PTH\.drl','.TXT' }
-dir | Rename-Item -NewName { $_.Name -replace '-NPTH\.drl','-NPTH.TXT' }
-dir | Rename-Item -NewName { $_.Name -replace '-Edge.Cuts\.gbr','.GML' }

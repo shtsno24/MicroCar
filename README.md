@@ -1,2 +1,0 @@
-# MicroCar
- Micro Car Project
