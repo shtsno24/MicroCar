@@ -26,21 +26,23 @@ def Linear(num_outputs=2, input_shape=(120, 160, 3), drop=0.2, l4_stride=1):
     :param l4_stride:       4-th layer stride, default 1
     """
     inputs = Input(shape=input_shape, name='img_in')
-    x = conv2d_relu(inputs, 24, 5, 2, 1)
+    x = conv2d_relu(inputs, 24, 3, 1, 1)
+    x = conv2d_relu(x, 24, 3, 2, 2)
     x = Dropout(drop)(x)
-    x = conv2d_relu(x, 32, 5, 2, 2)
+    x = conv2d_relu(x, 32, 3, 1, 3)
+    x = conv2d_relu(x, 32, 3, 2, 4)
     x = Dropout(drop)(x)
-    x = conv2d_relu(x, 64, 5, 2, 3)
+    x = conv2d_relu(x, 64, 3, 2, 5)
     x = Dropout(drop)(x)
-    x = conv2d_relu(x, 64, 3, l4_stride, 4)
+    x = conv2d_relu(x, 64, 3, l4_stride, 6)
     x = Dropout(drop)(x)
-    x = conv2d_relu(x, 64, 3, 1, 5)
+    x = conv2d_relu(x, 64, 3, 1, 7)
     x = Dropout(drop)(x)
     x = Flatten(name='flattened')(x)
 
-    x = Dense(100, activation='relu', name='dense_1')(x)
+    x = Dense(32, activation='relu', name='dense_1')(x)
     x = Dropout(drop)(x)
-    x = Dense(50, activation='relu', name='dense_2')(x)
+    x = Dense(16, activation='relu', name='dense_2')(x)
     x = Dropout(drop)(x)
 
     outputs = []
