@@ -12,14 +12,14 @@ import numpy as np
 
 import tensorflow as tf
 from tensorflow import keras
-from tensorflow.keras.models import Model, Input
-from tensorflow.keras.layers import Dense
+from tensorflow.keras.models import Model
+from tensorflow.keras.layers import Dense, Input
 from tensorflow.keras.layers import Conv2D, DepthwiseConv2D, MaxPooling2D, Conv2DTranspose
 from tensorflow.keras.layers import UpSampling2D, Activation, Concatenate, BatchNormalization, Reshape, Flatten
 from tensorflow.keras.layers import LeakyReLU, Add, PReLU, Dropout, SpatialDropout2D, ZeroPadding2D, Softmax, ReLU
 
 
-def Linear(img_in, num_outputs, input_shape=(120, 160, 3), drop=0.2, l4_stride=1):
+def Linear(num_outputs=2, input_shape=(120, 160, 3), drop=0.2, l4_stride=1):
     """
     :param img_in:          input layer of network
     :param drop:            dropout rate
@@ -46,10 +46,10 @@ def Linear(img_in, num_outputs, input_shape=(120, 160, 3), drop=0.2, l4_stride=1
     outputs = []
     for i in range(num_outputs):
         _x = Dense(1, activation='linear', name='n_outputs' + str(i))(x)
-        _x = Softmax()(x)
+        _x = Softmax()(_x)
         outputs.append(_x)
 
-    model = Model(inputs=[img_in], outputs=outputs)
+    model = Model(inputs=inputs, outputs=outputs)
     return model
 
 
@@ -66,6 +66,6 @@ def conv2d_relu(x, filters, kernel, strides, layer_num):
                kernel_size=(kernel, kernel),
                strides=(strides, strides),
                name='conv2d_' + str(layer_num))(x)
-    x = ReLU(x)
+    x = ReLU()(x)
 
     return x

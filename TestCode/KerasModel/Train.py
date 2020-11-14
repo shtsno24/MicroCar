@@ -25,17 +25,18 @@ try:
         TRAIN_DATASET_SIZE = 50000
         TEST_DATASET_SIZE = 10000
         BATCH_SIZE = 100
+
         # Load dataset
-        print("Load dataset...\n\n")
-        (train_images, train_labels), (test_images, test_labels) = tf.keras.datasets.cifar10.load_data()
-        print(train_images.shape, type(train_images))
-        print(test_images.shape, type(test_images))
-        train_images, test_images = train_images / 255, test_images / 255
-        print("\n\nDone")
+        # print("Load dataset...\n\n")
+        # (train_images, train_labels), (test_images, test_labels) = tf.keras.datasets.cifar10.load_data()
+        # print(train_images.shape, type(train_images))
+        # print(test_images.shape, type(test_images))
+        # train_images, test_images = train_images / 255, test_images / 255
+        # print("\n\nDone")
 
     # Load model
     print("Load Model...\n\n")
-    model = Model.DAE_Net()
+    model = Model.Linear()
     model.summary()
     print("\nDone")
 
@@ -43,9 +44,9 @@ try:
         # Train model
         print("\n\nTrain Model...")
         model.compile(loss=tf.keras.losses.MeanSquaredError(), optimizer='adam', metrics=[tf.keras.metrics.MeanSquaredError()])
-        model.fit(train_images, train_images, validation_data=(test_images, test_images), epochs=EPOCHS,
-                  steps_per_epoch=int(TRAIN_DATASET_SIZE / BATCH_SIZE),
-                  validation_steps=int(TEST_DATASET_SIZE / BATCH_SIZE))
+        # model.fit(train_images, train_images, validation_data=(test_images, test_images), epochs=EPOCHS,
+        #           steps_per_epoch=int(TRAIN_DATASET_SIZE / BATCH_SIZE),
+        #           validation_steps=int(TEST_DATASET_SIZE / BATCH_SIZE))
         print("  Done\n\n")
     except:
         import traceback
