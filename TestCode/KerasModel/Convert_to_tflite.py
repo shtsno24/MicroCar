@@ -2,6 +2,15 @@ import tensorflow as tf
 import numpy as np
 import Model
 from PIL import Image
+from tensorflow.keras.models import Model
+
+
+def get_layer_index(model, layer_name):
+    for i, l in enumerate(model.layers):
+        if l.name == layer_name:
+            return i
+    return None
+
 
 try:
     MODEL_FILE = "Model.h5"
@@ -12,10 +21,18 @@ try:
         # Load model
         print("\n\nLoad Model...\n")
         model = tf.keras.models.load_model(MODEL_FILE)
-        model.summary()
+        output_index = []
+        for n in ['throttle', 'steer']:
+            i = get_layer_index(model, n)
+            if i is not None:
+                print(i)
+                output_index.append(i)
+        # model.summary()
+        model_new = Model(model.input, [model.layers[x].output for x in output_index])
+        model_new.summary()
         print("\nDone")
 
-        converter = tf.lite.TFLiteConverter.from_keras_model(model)
+        converter = tf.lite.TFLiteConverter.from_keras_model(model_new)
         converter.target_ops = [tf.lite.OpsSet.TFLITE_BUILTINS,
                                 tf.lite.OpsSet.SELECT_TF_OPS]
         tfmodel = converter.convert()
@@ -52,3 +69,6 @@ try:
 except:
     import traceback
     traceback.print_exc()
+
+else:
+    input(">>")

@@ -3,8 +3,8 @@ This model is based on "KerasLiner" from Donkey Car Project.
 Please Refer to https://github.com/autorope/donkeycar/blob/dev/donkeycar/parts/keras.py
 https://hajimerobot.co.jp/wp/wp-content/uploads/2018/11/model.png
 
-(120, 160, 3) -> (58, 78, 24) -> (27, 37, 32) -> (12, 17, 64) -> (5, 8, 64) -> (3, 6, 64) -> (1152,) ->  (100,) ->  (50,) -> (1,), (1,)
-
+(120, 160, 3) -> (58, 78, 24) -> (27, 37, 32) -> (12, 17, 64) -> (5, 8, 64) -> (3, 6, 64) -> (1152,) ->  (100,) ->  (50,) -> throttle(16,), steer(20,)
+(60, 160, 3) -> (58, 78, 24) -> (27, 37, 32) -> (12, 17, 64) -> (5, 8, 64) -> (3, 6, 64) -> (1152,) ->  (100,) ->  (50,) -> throttle(16,), steer(20,)
 """
 
 
@@ -19,37 +19,38 @@ from tensorflow.keras.layers import UpSampling2D, Activation, Concatenate, Batch
 from tensorflow.keras.layers import LeakyReLU, Add, PReLU, Dropout, SpatialDropout2D, ZeroPadding2D, Softmax, ReLU
 
 
-def Linear(num_outputs=2, input_shape=(120, 160, 3), drop=0.2, l4_stride=1):
+def Linear(num_outputs=2, input_shape=(60, 160, 3), drop=0.2, l4_stride=1):
     """
     :param img_in:          input layer of network
     :param drop:            dropout rate
     :param l4_stride:       4-th layer stride, default 1
     """
     inputs = Input(shape=input_shape, name='img_in')
-    x = conv2d_relu(inputs, 24, 3, 1, 1)
-    x = conv2d_relu(x, 24, 3, 2, 2)
+    x = conv2d_relu(inputs, 16, 3, 1, 0)
     x = Dropout(drop)(x)
-    x = conv2d_relu(x, 32, 3, 1, 3)
-    x = conv2d_relu(x, 32, 3, 2, 4)
+    x = conv2d_relu(x, 32, 3, 2, 1)
     x = Dropout(drop)(x)
-    x = conv2d_relu(x, 64, 3, 2, 5)
+    x = conv2d_relu(x, 32, 3, 2, 2)
     x = Dropout(drop)(x)
-    x = conv2d_relu(x, 64, 3, l4_stride, 6)
+    x = conv2d_relu(x, 32, 3, 2, 3)
     x = Dropout(drop)(x)
-    x = conv2d_relu(x, 64, 3, 1, 7)
+    x = conv2d_relu(x, 64, 3, l4_stride, 4)
+    x = Dropout(drop)(x)
+    x = conv2d_relu(x, 16, 1, 1, 5)
     x = Dropout(drop)(x)
     x = Flatten(name='flattened')(x)
 
-    x = Dense(32, activation='relu', name='dense_1')(x)
-    x = Dropout(drop)(x)
-    x = Dense(16, activation='relu', name='dense_2')(x)
+    x = Dense(16, name='dense_1')(x)
+    x = ReLU()(x)
     x = Dropout(drop)(x)
 
     outputs = []
-    for i in range(num_outputs):
-        _x = Dense(1, activation='linear', name='n_outputs' + str(i))(x)
-        _x = Softmax()(_x)
-        outputs.append(_x)
+    _x = Dense(16, name='throttle')(x)
+    _x = Softmax()(_x)
+    outputs.append(_x)
+    _x = Dense(20, name='steer')(x)
+    _x = Softmax()(_x)
+    outputs.append(_x)
 
     model = Model(inputs=inputs, outputs=outputs)
     return model

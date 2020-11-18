@@ -46,17 +46,19 @@ lcd.draw_string(170, 5, "Done     ")
 time.sleep_ms(500)
 lcd.draw_string(60, 119, "Setup Done! :)")
 
-#clock = time.clock()
+loop_cnt = 0
 
 while True:
-    print("\n\ntake a snapshot")
+    print("\n\ntake a snapshot, cnt = ", loop_cnt)
     img = sensor.snapshot()
-    a = lcd.display(img)
+    kpu_img = img.copy((0, 60, 160, 60))
     print("run kpu")
-    a = kpu.forward(task, img)
+    a = kpu.forward(task, kpu_img)
     print("fetch data from kpu")
     output_steer = kpu.get_output(task, 0)
     output_throttle = kpu.get_output(task, 1)
     print("Data", output_steer, output_throttle)
+    a = lcd.display(kpu_img)
+    loop_cnt += 1
 
 lcd.clear((30, 111, 150))

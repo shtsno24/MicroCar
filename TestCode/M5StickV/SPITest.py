@@ -9,7 +9,7 @@ from Maix import GPIO
 from board import board_info
 
 # Show Board Info
-board_info.pin_map()
+#board_info.pin_map()
 
 
 # Init Button
@@ -36,28 +36,31 @@ fm.register(27, fm.fpioa.SPI1_D0, force=True)
 fm.register(24, fm.fpioa.SPI1_D1, force=True)
 fm.register(26, fm.fpioa.SPI1_SCLK, force=True)
 
-spi = SPI(SPI.SPI1, 
-          mode=SPI.MODE_MASTER, 
-          baudrate=400 * 1000, 
-          polarity=1, 
-          phase=1, 
-          bits=8, 
-          firstbit=SPI.MSB, 
-          sck=fm.fpioa.SPI1_SCLK, 
-          mosi=fm.fpioa.SPI1_D0, 
-          miso=fm.fpioa.SPI1_D1, 
+spi = SPI(SPI.SPI1,
+          mode=SPI.MODE_MASTER,
+          baudrate=1 * 1000 * 1000,
+          polarity=1,
+          phase=1,
+          bits=8,
+          firstbit=SPI.MSB,
+          sck=fm.fpioa.SPI1_SCLK,
+          mosi=fm.fpioa.SPI1_D0,
+          miso=fm.fpioa.SPI1_D1,
           cs0=fm.fpioa.SPI1_SS0)
 
-wbuff = bytearray([0x75, 0x75, 0x75, 0x75])
-rbuff = bytearray(4)
+data_len = 10
 
-spi.write(wbuff, cs=SPI.CS0)
-print(wbuff)
-utime.sleep_ms(100)
-
-spi.write_readinto(wbuff, rbuff)
+wbuff = bytearray([0x75 | 0x80 for x in range(data_len)])
+rbuff = bytearray([0x00 for x in range(data_len)])
+spi.write(bytearray([0x6B, 0x80]), cs=SPI.CS0)
 
 print(wbuff, rbuff)
+spi.write_readinto(wbuff, rbuff, cs=SPI.CS0)
+utime.sleep_ms(100)
+
+print(wbuff, rbuff)
+for i in range(data_len):
+    print(hex(rbuff[i]))
 utime.sleep_ms(300)
 
 MPU6886_ADDRESS = 0x68
