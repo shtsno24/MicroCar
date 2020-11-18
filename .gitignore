@@ -1,5 +1,6 @@
 /STL/parts/
 /schematic/schematic_old/
 /TestCode/KerasModel/TestImg/*.jpg
+/TestCode/KerasModel/kmodel_test/*
 *.dot
 *.exe
