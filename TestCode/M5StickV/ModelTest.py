@@ -2,6 +2,7 @@ import sensor
 import image
 import time
 import lcd
+import _thread
 import KPU as kpu
 import ulab as np
 
@@ -30,11 +31,11 @@ lcd.draw_string(170, 20, "Done")
 lcd.draw_string(10, 35, "set outputs")
 
 lcd.draw_string(10, 50, "steer")
-load_state = kpu.set_outputs(task, 0, 1, 1, 1)
+load_state = kpu.set_outputs(task, 0, 1, 1, 20)
 lcd.draw_string(150, 50, ("Done" if load_state is True else "None"))
 
 lcd.draw_string(10, 65, "throttle")
-load_state = kpu.set_outputs(task, 1, 1, 1, 1)
+load_state = kpu.set_outputs(task, 1, 1, 1, 16)
 lcd.draw_string(150, 65, ("Done" if load_state is True else "None"))
 
 kpu.memtest()
@@ -46,19 +47,39 @@ lcd.draw_string(170, 5, "Done     ")
 time.sleep_ms(500)
 lcd.draw_string(60, 119, "Setup Done! :)")
 
-loop_cnt = 0
+
+img = sensor.snapshot()
+kpu_img = img.copy((0, 60, 160, 60))
+a = lcd.display(kpu_img)
+
+
+def run_kpu():
+    while True:
+        print("KPU : fetch data from Camera")
+        img = sensor.snapshot()
+        kpu_img = img.copy((0, 60, 160, 60))
+        print("KPU : run kpu")
+        a = kpu.forward(task, kpu_img)
+        print("KPU : fetch data from kpu")
+        output_steer = kpu.get_output(task, 0)
+        output_throttle = kpu.get_output(task, 1)
+        print("KPU : Data", output_steer, output_throttle)
+        time.sleep_ms(1)
+
+
+def run_lcd():
+    while True:
+        print("LCD : fetch data from Camera")
+        img = sensor.snapshot()
+        kpu_img = img.copy((0, 60, 160, 60))
+        a = lcd.display(kpu_img)
+        time.sleep_ms(1)
+
+
+_thread.start_new_thread(run_kpu, ())
+_thread.start_new_thread(run_lcd, ())
 
 while True:
-    print("\n\ntake a snapshot, cnt = ", loop_cnt)
-    img = sensor.snapshot()
-    kpu_img = img.copy((0, 60, 160, 60))
-    print("run kpu")
-    a = kpu.forward(task, kpu_img)
-    print("fetch data from kpu")
-    output_steer = kpu.get_output(task, 0)
-    output_throttle = kpu.get_output(task, 1)
-    print("Data", output_steer, output_throttle)
-    a = lcd.display(kpu_img)
-    loop_cnt += 1
+    time.sleep_ms(1)
 
 lcd.clear((30, 111, 150))

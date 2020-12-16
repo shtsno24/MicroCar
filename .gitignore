@@ -4,3 +4,4 @@
 /TestCode/KerasModel/kmodel_test/*
 *.dot
 *.exe
+/_schematic
